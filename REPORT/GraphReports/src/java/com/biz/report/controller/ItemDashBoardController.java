@@ -7,6 +7,7 @@ package com.biz.report.controller;
 
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ItemDashBoardService;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -49,5 +50,14 @@ public class ItemDashBoardController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<ReportDataSet>(reportDataSet, headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/items")
+    private ResponseEntity<List<String>> selectTag() {
+        List<String> list = itemDashBoardService.readItems();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
     }
 }
