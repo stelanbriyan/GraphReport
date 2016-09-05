@@ -41,7 +41,10 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao{
     }
 
     public List readDataForAreaChart(String items, String months, String year) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = getSession();
+        Query sQLQuery = session.createSQLQuery("");
+
+        return sQLQuery.list();
     }
     
 }
