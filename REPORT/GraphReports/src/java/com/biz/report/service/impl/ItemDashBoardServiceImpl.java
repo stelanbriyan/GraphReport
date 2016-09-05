@@ -57,7 +57,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
             monthAr = new String[]{months};
         }
         int typeCount = typeAr.length;
-        List list = itemDashBoardDao.readDataForAreaChart(items, year, months);
+        List list = itemDashBoardDao.readDataForAreaChart(items, months, year);
         List<Report1> reportList = new MappingEngine().getList(list);
         logger.info(reportList.size());
         List<Report1DataSet> dataSets = new ArrayList<Report1DataSet>();
