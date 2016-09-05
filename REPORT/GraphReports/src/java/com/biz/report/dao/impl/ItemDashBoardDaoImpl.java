@@ -22,8 +22,8 @@ import org.springframework.stereotype.Repository;
  * @author Aux-058
  */
 @Repository
-public class ItemDashBoardDaoImpl implements ItemDashBoardDao{
-    
+public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -35,16 +35,24 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao{
 
     public List readItems() {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("");
+        Query sQLQuery = session.createSQLQuery("SELECT a.ItemName FROM CASSIMS.dbo.fitems a , CASSIMS.dbo.fInvdet b "
+                + "WHERE a.ItemCode = b.Itemcode "
+                + "GROUP BY a.ItemName");
 
         return sQLQuery.list();
     }
 
     public List readDataForAreaChart(String items, String months, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("");
+        Query sQLQuery = session.createSQLQuery("SELECT DATENAME(MONTH ,b.TxnDate) , a.ItemName , sum(b.SellPrice) "
+                + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
+                + "WHERE a.ItemCode = b.Itemcode "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.ItemName IN (" + items + ") "
+                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
+                + "GROUP BY a.ItemName , b.TxnDate");
 
         return sQLQuery.list();
     }
-    
+
 }
