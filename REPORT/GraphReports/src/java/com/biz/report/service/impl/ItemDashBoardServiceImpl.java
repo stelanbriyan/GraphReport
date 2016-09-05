@@ -10,10 +10,6 @@ import com.biz.report.domain.MappingEngine;
 import com.biz.report.domain.Report1;
 import com.biz.report.dto.DataPoint;
 import com.biz.report.dto.Report1DataSet;
-import com.biz.report.dto.Report2DataSet;
-import com.biz.report.dto.Report3DataSet;
-import com.biz.report.dto.Report4DataSet;
-import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ItemDashBoardService;
 import java.util.ArrayList;
@@ -38,7 +34,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     private Log logger = LogFactory.getLog(ItemDashBoardServiceImpl.class);
 
     public List<String> readItems() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return itemDashBoardDao.readItems();
     }
 
     public List<Report1DataSet> readDataForAreaChart(String items, String months, String year) {
