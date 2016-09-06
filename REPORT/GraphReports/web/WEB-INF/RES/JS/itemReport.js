@@ -33,23 +33,76 @@ $(function () {
     $('#search').on('click', function () {
         var itemList = $('#list').val();
         var monthList = $('#monthList').val();
-        var data = {
+        var jsonData = {
             "months": monthList,
             "items": itemList
         };
-        
+
         $.ajax({
             type: "POST",
             contentType: "application/json",
             url: "v1/web/itemreport/2016/get",
-            data: JSON.stringify(data),
+            data: JSON.stringify(jsonData),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                alert(data);
+                loadAreaChart(data.report_1);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
+                alert(errorThrown);
             }
         });
     });
 });
+
+function loadAreaChart(json) {
+    var chart1 = new CanvasJS.Chart("chartContainer1", {
+        title: {
+            text: "",
+            margin: 15
+        },
+        toolTip: {
+            shared: true
+        },
+        axisX: {
+            valueFormatString: "MMM",
+            interval: 1,
+            intervalType: "month"
+        },
+        axisY: {
+            interval: 500000
+        },
+        legend: {
+            verticalAlign: "bottom",
+            horizontalAlign: "center"
+        },
+        data: json,
+        legend: {
+            cursor: "pointer",
+            itemclick: function (e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                chart1.render();
+            }
+        }
+    });
+    chart1.render();
+}
+
+function loadPieChart(json){
+    
+}
+
+function loadBarChart(json){
+    
+}
+
+function loadColumnChart(json){
+    
+}
+
+function loadLineChart(json){
+    
+}

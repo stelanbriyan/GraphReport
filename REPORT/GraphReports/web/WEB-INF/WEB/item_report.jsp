@@ -60,5 +60,78 @@
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <span class="head1">AREA CHART</span><br/>
+                        <span class="head2"> Interested in cumulative totals over a period of time or range of values.</span>
+                    </center><br/>
+                    <div class="chart">
+                        <div id="chartContainer1"></div>
+                    </div>            
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <center>
+                        <span class="head1">PIE CHART</span><br/>
+                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
+                    </center><br/>
+                    <div class="chart">
+                        <div id="chartContainer2"></div>
+                    </div>            
+                </div>
+                <div class="col-md-6">
+                    <center>
+                        <span class="head1">BAR CHART</span><br/>
+                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
+                    </center><br/>
+                    <div class="chart">
+                        <div id="chartContainer3"></div>
+                    </div>            
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <span class="head1">COLUMN CHART</span><br/>
+                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
+                    </center><br/>
+                    <div class="chart">
+                        <div id="chartContainer4"></div>
+                    </div>            
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <span class="head1">LINE CHART</span><br/>
+                    </center><br/>
+                    <div class="chart">
+                        <div id="chartContainer5"></div>
+                    </div>            
+                </div>
+            </div>
+
+
+        </div>
+        <br/>
+        <br/>
+        <div class="bottom_of_report">
+            <center>GRAPH SALES REPORT @ 2016  </center>
+        </div>
+
     </body>
 </html>
