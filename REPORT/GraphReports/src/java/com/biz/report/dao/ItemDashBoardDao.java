@@ -15,5 +15,7 @@ public interface ItemDashBoardDao {
     
     List readItems();
     
-    List readDataForAreaChart(String items, String months, String year);
+    List read(String items, String months, String year);
+    
+    List read(String items, String year);
 }

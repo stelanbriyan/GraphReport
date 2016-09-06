@@ -6,6 +6,7 @@
 package com.biz.report.service;
 
 import com.biz.report.dto.Report1DataSet;
+import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.ReportDataSet;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface ItemDashBoardService {
     List<String> readItems();
     
     List<Report1DataSet> readDataForAreaChart(String items, String months, String year);
+    
+    public List<Report2DataSet> readDataForPieChart(String types, String year);
     
     public ReportDataSet getReports(String types, String months, String year);
 }
