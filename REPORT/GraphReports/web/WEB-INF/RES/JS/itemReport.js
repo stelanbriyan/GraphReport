@@ -48,6 +48,7 @@ $(function () {
                 loadAreaChart(data.report_1);
                 loadPieChart(data.report_2);
                 loadBarChart(data.report_3);
+                loadColumnChart(data.report_4);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 alert(errorThrown);
