@@ -33,23 +33,23 @@ $(function () {
     $('#search').on('click', function () {
         var itemList = $('#list').val();
         var monthList = $('#monthList').val();
-        var jsonData = {
+        var data = {
             "months": monthList,
             "items": itemList
         };
-
+        
         $.ajax({
             type: "POST",
             contentType: "application/json",
             url: "v1/web/itemreport/2016/get",
-            data: JSON.stringify(jsonData),
+            data: JSON.stringify(data),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 loadAreaChart(data.report_1);
                 loadPieChart(data.report_2);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+                console.log(errorThrown);
             }
         });
     });

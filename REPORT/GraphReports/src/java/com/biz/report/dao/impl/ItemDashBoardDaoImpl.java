@@ -44,13 +44,14 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
     public List readDataForAreaChart(String items, String months, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT b.TxnDate , a.ItemName , sum(b.SellPrice) "
+        Query sQLQuery = session.createSQLQuery("SELECT DATENAME(MONTH ,b.TxnDate) , a.ItemName , sum(b.SellPrice) "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.ItemName IN (" + items + ") "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.ItemName , b.TxnDate");
+
         return sQLQuery.list();
     }
 

@@ -26,23 +26,21 @@ public class MappingEngine {
     }
 
     public List<Report1> getList(List list) {
-        if (list != null) {
-            for (Object o : list) {
-                Object[] obj = (Object[]) o;
-                Report1 r = new Report1();
-                if (obj[0] != null && !obj[0].equals("")) {
-                    r.setMonthName(getMonthName(obj[0].toString().trim()));
-                }
-                if (obj[1] != null) {
-                    r.setTypeName(obj[1].toString().trim());
-                }
-                if (obj[2] != null) {
-                    r.setSellingPrice(Double.parseDouble(obj[2].toString().trim()));
-                }
-                logger.info(o);
-                logger.info(r);
-                report.add(r);
+        for (Object o : list) {
+            Object[] obj = (Object[]) o;
+            Report1 r = new Report1();
+            if (obj[0] != null && !obj[0].equals("")) {
+                r.setMonthName(getMonthName(obj[0].toString().trim()));
             }
+            if (obj[1] != null) {
+                r.setTypeName(obj[1].toString().trim());
+            }
+            if (obj[2] != null) {
+                r.setSellingPrice(Double.parseDouble(obj[2].toString().trim()));
+            }
+            logger.info(o);
+            logger.info(r);
+            report.add(r);
         }
         return report;
     }
