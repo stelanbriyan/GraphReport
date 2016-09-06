@@ -9,6 +9,7 @@ import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
 import com.biz.report.dto.Report4DataSet;
+import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import java.util.List;
 
@@ -28,5 +29,7 @@ public interface ItemDashBoardService {
     
     public List<Report4DataSet> readDataForColumnChart(String items, String months, String year);
     
-    public ReportDataSet getReports(String types, String months, String year);
+    public List<Report5DataSet> readDataForLineChart(String items, String months, String year);
+    
+    public ReportDataSet getReports(String items, String months, String year);
 }

@@ -14,6 +14,7 @@ import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
 import com.biz.report.dto.Report4DataSet;
+import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ItemDashBoardService;
 import java.util.ArrayList;
@@ -129,6 +130,37 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         }
         return dataSets;
     }
+    
+    public List<Report5DataSet> readDataForLineChart(String items, String months, String year){
+        if (!StringUtils.isEmpty(items) && items.contains("[")) {
+            items = items.substring(1, items.length() - 1);
+        }
+        String[] typeAr;
+        if (!StringUtils.isEmpty(items) && items.contains(",")) {
+            typeAr = items.split("[,]");
+        } else {
+            typeAr = new String[]{items};
+        }
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        String[] monthAr;
+        if (!StringUtils.isEmpty(months) && months.contains(",")) {
+            monthAr = months.split("[,]");
+        } else {
+            monthAr = new String[]{months};
+        }
+        int typeCount = typeAr.length;
+        List list = itemDashBoardDao.read(items, months, year);
+        List<Report1> reportList = new MappingEngine().getList(list);
+        logger.info(reportList.size());
+        List<Report5DataSet> dataSets = new ArrayList<Report5DataSet>();
+        for (int i = 0; i < typeCount; i++) {
+            List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
+            dataSets.add(new Report5DataSet(dataPoints, typeAr[i]));
+        }
+        return dataSets;
+    }
 
     @ResponseBody
     private List<DataPoint> constructDataPoints(List<Report1> reportList, String item, String[] monthAr, int i) {
@@ -174,11 +206,13 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report2DataSet> report2 = readDataForPieChart(items, year);
         List<Report3DataSet> report3 = readDataForBarChart(items, year);
         List<Report4DataSet> report4 = readDataForColumnChart(items, months, year);
+        List<Report5DataSet> report5 = readDataForLineChart(items, months, year);
         ReportDataSet reportDataSet = new ReportDataSet();
         reportDataSet.setReport1(report1);
         reportDataSet.setReport2(report2);
         reportDataSet.setReport3(report3);
         reportDataSet.setReport4(report4);
+        reportDataSet.setReport5(report5);
         return reportDataSet;
     }
 }
