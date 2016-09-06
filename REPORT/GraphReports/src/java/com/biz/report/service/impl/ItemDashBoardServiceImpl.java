@@ -12,6 +12,7 @@ import com.biz.report.domain.Report2;
 import com.biz.report.dto.DataPoint;
 import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
+import com.biz.report.dto.Report3DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ItemDashBoardService;
 import java.util.ArrayList;
@@ -126,9 +127,24 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     public ReportDataSet getReports(String items, String months, String year) {
         List<Report1DataSet> report1 = readDataForAreaChart(items, months, year);
         List<Report2DataSet> report2 = readDataForPieChart(items, year);
+        List<Report3DataSet> report3 = readDataForBarChart(items, year);
         ReportDataSet reportDataSet = new ReportDataSet();
         reportDataSet.setReport1(report1);
         reportDataSet.setReport2(report2);
+        reportDataSet.setReport3(report3);
         return reportDataSet;
+    }
+
+    public List<Report3DataSet> readDataForBarChart(String items, String year) {
+        if (!StringUtils.isEmpty(items) && items.contains("[")) {
+            items = items.substring(1, items.length() - 1);
+        }
+        List list = itemDashBoardDao.read(items, year);
+        List<Report2> reportList = new MappingEngine().getPieChartReport(list);
+        List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
+        for (Report2 r : reportList) {
+            dataSets.add(new Report3DataSet(r.getTypeName(), r.getAmount()));
+        }
+        return dataSets;
     }
 }
