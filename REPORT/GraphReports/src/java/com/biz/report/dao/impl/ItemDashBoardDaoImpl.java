@@ -12,8 +12,6 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import static org.joda.time.Period.months;
-import static org.joda.time.format.ISODateTimeFormat.year;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,8 +39,8 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
         return sQLQuery.list();
     }
-
-    public List readDataForAreaChart(String items, String months, String year) {
+    
+    public List read(String items, String months, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT b.TxnDate , a.ItemName , sum(b.SellPrice) "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
@@ -54,7 +52,7 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
         return sQLQuery.list();
     }
 
-    public List readDataForAreaChart(String items, String year) {
+    public List read(String items, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.ItemName , sum(b.SellPrice) "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "

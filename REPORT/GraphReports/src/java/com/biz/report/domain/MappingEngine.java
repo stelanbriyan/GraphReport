@@ -55,6 +55,7 @@ public class MappingEngine {
                 r.setTypeName(obj[0].toString().trim());
             }
             if (obj[1] != null) {
+                logger.info(obj[0]);
                 r.setAmount(Double.parseDouble(obj[1].toString().trim()));
             }
             report2.add(r);
