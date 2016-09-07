@@ -8,6 +8,12 @@ and open the template in the editor.
     Author     : Stelan Briyan
 */
 
+.item-detail{
+    padding: 50px;
+    background-color: white;
+    height: 700px;
+}
+
 body{
     background-color: #fafcfe;
 /*    padding-left: 50px;

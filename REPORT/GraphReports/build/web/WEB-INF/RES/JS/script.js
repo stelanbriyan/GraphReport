@@ -6,6 +6,7 @@
 
 
 $(function () {
+    $('.item-table').hide();
     $.ajax({
         type: "POST",
         url: "v1/web/type-name",
@@ -24,12 +25,12 @@ $(function () {
             console.log(errorThrown);
         }
     });
-
     $('.selectpicker').selectpicker({
         style: 'btn-info',
         size: 12
     });
-
+    hideAllChart();
+    $('#area-chart').show();
     $('#search').on('click', function () {
         var typeList = $('#typelist').val();
         var monthList = $('#monthList').val();
@@ -37,6 +38,24 @@ $(function () {
             "months": monthList,
             "types": typeList
         };
+        var chartType = $('#chart-type').val();
+        if (chartType === 'Area Chart') {
+            hideAllChart();
+            $('#area-chart').show();
+        } else if (chartType === 'Pie Chart') {
+            hideAllChart();
+            $('#pie-chart').show();
+        } else if (chartType === 'Bar Chart') {
+            hideAllChart();
+            $('#bar-chart').show();
+        } else if (chartType === 'Column Chart') {
+            hideAllChart();
+            $('#column-chart').show();
+        } else if (chartType === 'Line Chart') {
+            hideAllChart();
+            $('#line-chart').show();
+        }
+
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -52,8 +71,14 @@ $(function () {
             }
         });
     });
-
 });
+function hideAllChart() {
+    $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
+//    $('#pie-chart').hide();
+//    $('#bar-chart').hide();
+//    $('#column-chart').hide();
+//    $('#line-chart').hide();
+}
 
 function loadPieChartOne(json) {
     var chart2 = new CanvasJS.Chart("chartContainer2",
@@ -67,9 +92,14 @@ function loadPieChartOne(json) {
                         type: "pie",
                         showInLegend: true,
                         toolTipContent: "{y} - #percent %",
-                        yValueFormatString: "#0.#,,. Million",
+                        yValueFormatString: "0.00 LKR",
+//                        yValueFormatString: "#0.#,,. Million",
                         legendText: "{indexLabel}",
-                        dataPoints: json.report_2
+                        dataPoints: json.report_2,
+                        cursor: "pointer",
+                        click: function (e) {
+                            loadItemTable(e);
+                        }
                     }
                 ]
             });
@@ -81,7 +111,11 @@ function loadPieChartOne(json) {
                 data: [
                     {
                         type: "bar",
-                        dataPoints: json.report_3
+                        dataPoints: json.report_3,
+                        cursor: "pointer",
+                        click: function (e) {
+                            loadItemTable(e);
+                        }
                     }
                 ]
             });
@@ -123,8 +157,6 @@ function loadChart(json) {
             }
         }
     });
-
-
     var chart4 = new CanvasJS.Chart("chartContainer4", {
         title: {
             text: ""
@@ -142,7 +174,6 @@ function loadChart(json) {
             }
         }
     });
-
     var chart = new CanvasJS.Chart("chartContainer5",
             {
                 zoomEnabled: false,
@@ -176,9 +207,7 @@ function loadChart(json) {
                     }
                 }
             });
-
     chart.render();
-
     chart1.render();
     chart4.render();
 }
@@ -216,3 +245,13 @@ function loadChart(json) {
 //        {y: 4303364, indexLabel: "Nintendo 3DS"},
 //        {y: 1717786, indexLabel: "PS Vita"}
 //    ];
+
+
+function loadItemTable(e, json) {
+    $('#type-name-item').text(e.dataPoint.indexLabel);
+    $('#amount-item').text(e.dataPoint.y + " LKR");
+    $('.item-table').show();
+    $("html, body").animate({
+        scrollTop: $('#item-detail-info').offset().top - 50
+    }, 1000);
+}

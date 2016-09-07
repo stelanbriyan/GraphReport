@@ -27,14 +27,14 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            TYPE :
+                            <!--TYPE :-->
                             <select class="selectpicker1" id="typelist" multiple>
                                 <!--                                <option value="'Residential'">Residential</option>
                                                                 <option value="'X-RITE'">X-RITE</option>
                                                                 <option value="'ATLAS'">ATLAS</option>-->
                             </select>
-                            &nbsp;&nbsp;&nbsp;
-                            MONTHS :
+                            <!--&nbsp;&nbsp;&nbsp;-->
+                            <!--MONTHS :-->
                             <select class="selectpicker" id="monthList" multiple>
                                 <option value="'January'" selected>January</option>
                                 <option value="'February'" selected>February</option>
@@ -52,6 +52,13 @@
                             <select class="selectpicker" id="yearList" multiple>
                                 <option selected>2016</option>
                             </select>
+                            <select class="selectpicker" id="chart-type">
+                                <option selected>Area Chart</option>
+                                <option>Pie Chart</option>
+                                <option>Bar Chart</option>
+                                <option>Column Chart</option>
+                                <option>Line Chart</option>
+                            </select>
                             <button id="search" class="btn btn-default">Search</button>
                             <img style="float: right;height: 40px;margin-right: 20px" src="IMG/logo_1.jpg" alt=""/>
                         </div>
@@ -64,7 +71,7 @@
         <br/>
         <br/>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="area-chart">
                 <div class="col-md-12">
                     <center>
                         <span class="head1">AREA CHART</span><br/>
@@ -74,46 +81,51 @@
                         <div id="chartContainer1"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-6">
+            
+            <div class="row" id="pie-chart">
+                <div class="col-md-12">
                     <center>
                         <span class="head1">PIE CHART</span><br/>
                         <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer2"></div>
-                    </div>            
+                    </div>        
                 </div>
-                <div class="col-md-6">
+                <br/>
+                <br/>
+            </div>
+
+            <div class="row" id="bar-chart">
+                <div class="col-md-12">
                     <center>
                         <span class="head1">BAR CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer3"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-12">
+            
+            <div class="row" id="column-chart">
+                <div class="col-md-12" >
                     <center>
                         <span class="head1">COLUMN CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer4"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <div class="row">
+            
+            <div class="row" id="line-chart">
                 <div class="col-md-12">
                     <center>
                         <span class="head1">LINE CHART</span><br/>
@@ -121,10 +133,60 @@
                     <div class="chart">
                         <div id="chartContainer5"></div>
                     </div>            
-                </div>
+                </div>                
+                <br/>
+                <br/>
             </div>
 
-
+            <div class="item-table">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="item-detail" id="item-detail-info">
+                            <table style="width: 400px">
+                                <tr>
+                                    <td>
+                                        <div style="background-color: #fafcfe;padding: 10px;border-left: 4px solid #269abc;">
+                                            <dt>Type Name</dt>
+                                            <dd style="font-size: 20px;" id="type-name-item"></dd>
+                                        </div>
+                                        <!--</dl>-->
+                                    </td>
+                                    <td>
+                                        <div style="background-color: #fafcfe;padding: 10px;margin-left: 5px;border-left: 4px solid #269abc;">
+                                            <dt>Total Selling Price</dt>
+                                            <dd style="font-size: 20px;" id="amount-item"></dd>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table style="width: 80%" class="table  table-striped table-bordered">
+                                <tr>
+                                    <th>INVOICE NO</th>
+                                    <th>DATE</th>
+                                    <th>ITEM NAME</th>
+                                    <th>QTY</th>
+                                    <th>SELLING PRICE</th>
+                                </tr>
+                                <tr>
+                                    <td>1221</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>1221</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <br/>
         <br/>
