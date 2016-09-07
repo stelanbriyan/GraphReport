@@ -18,4 +18,6 @@ public interface ReportDao {
     List readPieChartData(String types, String year, String months);
 
     public List readType();
+    
+    public List readItemByType(String type, String year);
 }

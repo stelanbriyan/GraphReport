@@ -10,6 +10,7 @@ import com.biz.report.domain.MappingEngine;
 import com.biz.report.domain.Report1;
 import com.biz.report.domain.Report2;
 import com.biz.report.dto.DataPoint;
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
@@ -17,6 +18,7 @@ import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ReportService;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
@@ -223,5 +225,27 @@ public class ReportServiceImpl implements ReportService {
         List list = reportDao.readType();
 
         return list;
+    }
+
+    @Override
+    public List<ItemDTO> readItemByType(String type, String year) {
+        List list = reportDao.readItemByType(type, year);
+        List<ItemDTO> itemDTOs = new ArrayList<ItemDTO>();
+        for (Object object : list) {
+            ItemDTO itemDTO = constructItemDTO(object);
+            itemDTOs.add(itemDTO);
+        }
+        return itemDTOs;
+    }
+    
+    private ItemDTO constructItemDTO(Object ob) {
+        Object[] obAr = (Object[]) ob;
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setInvoiceNo(obAr[0].toString());
+        itemDTO.setDate(new SimpleDateFormat("yyyy-MM-dd").format(obAr[1].toString()));
+        itemDTO.setItemName(obAr[2].toString());
+        itemDTO.setQty(Integer.parseInt(obAr[3].toString()));
+        itemDTO.setSellingPrice(obAr[4].toString());
+        return itemDTO;
     }
 }

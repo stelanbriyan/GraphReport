@@ -98,7 +98,20 @@ function loadPieChartOne(json) {
                         dataPoints: json.report_2,
                         cursor: "pointer",
                         click: function (e) {
-                            loadItemTable(e);
+                            alert(JSON.stringify(e.dataPoint.indexLabel));
+                            $.ajax({
+                                type: "POST",
+                                contentType: "application/json",
+                                url: "v1/web/items/2016/read",
+                                data: e.dataPoint.indexLabel,
+                                dataType: 'json',
+                                success: function (jsonData, textStatus, jqXHR) {
+                                    loadItemTable(e, jsonData);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(errorThrown);
+                                }
+                            });
                         }
                     }
                 ]
@@ -250,6 +263,14 @@ function loadChart(json) {
 function loadItemTable(e, json) {
     $('#type-name-item').text(e.dataPoint.indexLabel);
     $('#amount-item').text(e.dataPoint.y + " LKR");
+    var tr;
+    for (var i = 0; i < json.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + json[i].User_Name + "</td>");
+        tr.append("<td>" + json[i].score + "</td>");
+        tr.append("<td>" + json[i].team + "</td>");
+        $('#tbl').append(tr);
+    }
     $('.item-table').show();
     $("html, body").animate({
         scrollTop: $('#item-detail-info').offset().top - 50

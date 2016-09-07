@@ -160,7 +160,7 @@
                                 </tr>
                             </table>
                             <br/>
-                            <table style="width: 80%" class="table  table-striped table-bordered">
+                            <table style="width: 80%" class="table  table-striped table-bordered" id="tbl">
                                 <tr>
                                     <th>INVOICE NO</th>
                                     <th>DATE</th>

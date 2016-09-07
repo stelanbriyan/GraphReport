@@ -5,6 +5,7 @@
  */
 package com.biz.report.controller;
 
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ReportService;
 import java.util.List;
@@ -56,11 +57,21 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/type-name")
-    private ResponseEntity<List<String>> selectTag() {
+    public ResponseEntity<List<String>> selectTag() {
         List<String> list = reportService.getTypes();
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "items/{year}/read", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    public ResponseEntity<List<ItemDTO>> readItemByType(@RequestBody String type, @PathVariable("year")String year) {
+        Assert.notNull(year, "Year is null.");
+        Assert.notNull(type, "Type is null.");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<ItemDTO>>(reportService.readItemByType(type, year), headers, HttpStatus.OK);
     }
 }

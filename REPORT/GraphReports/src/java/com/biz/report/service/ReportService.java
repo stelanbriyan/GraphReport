@@ -1,5 +1,6 @@
 package com.biz.report.service;
 
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
@@ -32,4 +33,6 @@ public interface ReportService {
     public ReportDataSet getReports(String types, String months, String year);
 
     public List<String> getTypes();
+    
+    public List<ItemDTO> readItemByType(String type, String year);
 }

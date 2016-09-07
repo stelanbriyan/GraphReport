@@ -60,12 +60,14 @@ public class ReportDaoImpl implements ReportDao {
         return sQLQuery.list();
     }
 
-    public void readItemByType(String type, String year) {
-        String query = "SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
+    public List readItemByType(String type, String year) {
+        Session session = getSession();
+        Query query = session.createQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
                 + "FROM CASSIMS.dbo.fitems a , CASSIMS.dbo.FType b , CASSIMS.dbo.FInvdet c  "
                 + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
                 + "AND YEAR(c.txnDate) =  " + year + " "
-                + "AND b.TypeName = '" + type + "'";
+                + "AND b.TypeName = '" + type + "'");
+        return query.list();
     }
 
     public List readType() {
