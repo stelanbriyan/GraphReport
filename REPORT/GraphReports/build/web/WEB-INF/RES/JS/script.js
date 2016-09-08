@@ -129,7 +129,22 @@ function loadPieChartOne(json) {
                         dataPoints: json.report_3,
                         cursor: "pointer",
                         click: function (e) {
-//                            loadItemTable(e);
+                            var inputData = {
+                                "type" : e.dataPoint.label
+                            };
+                            $.ajax({
+                                type: "POST",
+                                contentType: "application/json",
+                                url: "v1/web/items/2016/read",
+                                data: JSON.stringify(inputData),
+                                dataType: 'json',
+                                success: function (jsonData, textStatus, jqXHR) {
+                                    loadItemTable(e, jsonData);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(errorThrown);
+                                }
+                            });
                         }
                     }
                 ]
@@ -267,6 +282,7 @@ function loadItemTable(e, json) {
     $('#amount-item').text(e.dataPoint.y + " LKR");
 
     var tr;
+    $('#tbody').empty();
     for (var i = 0; i < json.length; i++) {
         tr = $('<tr/>');
         tr.append("<td>" + json[i].invoice_no + "</td>");
@@ -274,7 +290,7 @@ function loadItemTable(e, json) {
         tr.append("<td>" + json[i].item_name + "</td>");
         tr.append("<td>" + json[i].qty + "</td>");
         tr.append("<td>" + json[i].selling_price + "</td>");
-        $('#tbl').append(tr);
+        $('#tbody').append(tr);
     }
     
     $('.item-table').show();

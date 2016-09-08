@@ -160,14 +160,19 @@
                                 </tr>
                             </table>
                             <br/>
-                            <table style="width: 80%" class="table  table-striped table-bordered" id="tbl">
-                                <tr>
-                                    <th>INVOICE NO</th>
-                                    <th>DATE</th>
-                                    <th>ITEM NAME</th>
-                                    <th>QTY</th>
-                                    <th>SELLING PRICE</th>
-                                </tr>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>INVOICE NO</th>
+                                        <th>DATE</th>
+                                        <th>ITEM NAME</th>
+                                        <th>QTY</th>
+                                        <th>SELLING PRICE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    
+                                </tbody>
                             </table>
                         </div>
                     </div>
