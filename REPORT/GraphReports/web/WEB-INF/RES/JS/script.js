@@ -101,7 +101,6 @@ function loadPieChartOne(json) {
                             var inputData = {
                                 "type" : e.dataPoint.indexLabel
                             };
-                            loadItemTable(e);
                             $.ajax({
                                 type: "POST",
                                 contentType: "application/json",
@@ -130,7 +129,7 @@ function loadPieChartOne(json) {
                         dataPoints: json.report_3,
                         cursor: "pointer",
                         click: function (e) {
-                            loadItemTable(e);
+//                            loadItemTable(e);
                         }
                     }
                 ]
