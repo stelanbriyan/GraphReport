@@ -62,7 +62,7 @@ public class ReportDaoImpl implements ReportDao {
 
     public List readItemByType(String type, String year) {
         Session session = getSession();
-        Query query = session.createQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
+        Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
                 + "FROM fitems a , FType b , FInvdet c  "
                 + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
                 + "AND YEAR(c.txnDate) =  " + year + " "

@@ -20,7 +20,7 @@ public class ItemDTO {
     private String date;
     
     @JsonProperty("qty")
-    private Integer qty;
+    private String qty;
     
     @JsonProperty("selling_price")
     private String sellingPrice;
@@ -31,7 +31,7 @@ public class ItemDTO {
     public ItemDTO() {
     }
 
-    public ItemDTO(String invoiceNo, String date, Integer qty, String sellingPrice, String itemName) {
+    public ItemDTO(String invoiceNo, String date, String qty, String sellingPrice, String itemName) {
         this.invoiceNo = invoiceNo;
         this.date = date;
         this.qty = qty;
@@ -55,11 +55,11 @@ public class ItemDTO {
         this.date = date;
     }
 
-    public Integer getQty() {
+    public String getQty() {
         return qty;
     }
 
-    public void setQty(Integer qty) {
+    public void setQty(String qty) {
         this.qty = qty;
     }
 

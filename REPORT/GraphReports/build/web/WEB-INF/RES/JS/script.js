@@ -268,9 +268,11 @@ function loadItemTable(e, json) {
     var tr;
     for (var i = 0; i < json.length; i++) {
         tr = $('<tr/>');
-        tr.append("<td>" + json[i].User_Name + "</td>");
-        tr.append("<td>" + json[i].score + "</td>");
-        tr.append("<td>" + json[i].team + "</td>");
+        tr.append("<td>" + json[i].invoice_no + "</td>");
+        tr.append("<td>" + json[i].date + "</td>");
+        tr.append("<td>" + json[i].item_name + "</td>");
+        tr.append("<td>" + json[i].qty + "</td>");
+        tr.append("<td>" + json[i].selling_price + "</td>");
         $('#tbl').append(tr);
     }
     $('.item-table').show();

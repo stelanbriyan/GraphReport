@@ -18,9 +18,12 @@ import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ReportService;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -237,14 +240,14 @@ public class ReportServiceImpl implements ReportService {
         }
         return itemDTOs;
     }
-    
+
     private ItemDTO constructItemDTO(Object ob) {
         Object[] obAr = (Object[]) ob;
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setInvoiceNo(obAr[0].toString());
-        itemDTO.setDate(new SimpleDateFormat("yyyy-MM-dd").format(obAr[1].toString()));
+        itemDTO.setDate(obAr[1].toString().substring(0, 10));
         itemDTO.setItemName(obAr[2].toString());
-        itemDTO.setQty(Integer.parseInt(obAr[3].toString()));
+        itemDTO.setQty(obAr[3].toString());
         itemDTO.setSellingPrice(obAr[4].toString());
         return itemDTO;
     }
