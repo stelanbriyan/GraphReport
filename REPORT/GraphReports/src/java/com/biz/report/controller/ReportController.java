@@ -67,9 +67,10 @@ public class ReportController {
     
     @ResponseBody
     @RequestMapping(value = "items/{year}/read", method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<List<ItemDTO>> readItemByType(@RequestBody String type, @PathVariable("year")String year) {
+    public ResponseEntity<List<ItemDTO>> readItemByType(@RequestBody Map map, @PathVariable("year")String year) {
         Assert.notNull(year, "Year is null.");
-        Assert.notNull(type, "Type is null.");
+        Assert.notNull(map, "Type is null.");
+        String type = map.get("type").toString();
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<List<ItemDTO>>(reportService.readItemByType(type, year), headers, HttpStatus.OK);
