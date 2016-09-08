@@ -101,6 +101,7 @@ function loadPieChartOne(json) {
                             var inputData = {
                                 "type" : e.dataPoint.indexLabel
                             };
+                            loadItemTable(e);
                             $.ajax({
                                 type: "POST",
                                 contentType: "application/json",
@@ -265,6 +266,7 @@ function loadChart(json) {
 function loadItemTable(e, json) {
     $('#type-name-item').text(e.dataPoint.indexLabel);
     $('#amount-item').text(e.dataPoint.y + " LKR");
+
     var tr;
     for (var i = 0; i < json.length; i++) {
         tr = $('<tr/>');
@@ -275,6 +277,7 @@ function loadItemTable(e, json) {
         tr.append("<td>" + json[i].selling_price + "</td>");
         $('#tbl').append(tr);
     }
+    
     $('.item-table').show();
     $("html, body").animate({
         scrollTop: $('#item-detail-info').offset().top - 50
