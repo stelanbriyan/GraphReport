@@ -168,20 +168,6 @@
                                     <th>QTY</th>
                                     <th>SELLING PRICE</th>
                                 </tr>
-                                <tr>
-                                    <td>1221</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>1221</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
                             </table>
                         </div>
                     </div>
