@@ -24,6 +24,14 @@
     </head>
     <body>
         <div class="navbar-fixed-top">
+            <div class="top-br">
+                <div class="container-fluid">
+                    <div class="btn-top">Customer Dash Board</div>
+                    <div class="btn-top">Sales Dash Board</div>
+                    <div class="btn-top selectedDashboardbtn">Product Dash Board</div>
+                    <a href="/GraphReports/"><div class="btn-top">Category Dash Board</div></a>
+                </div>
+            </div>
             <div class="top-bar">
                 <div class="container-fluid">
                     <div class="row">
@@ -60,6 +68,8 @@
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <br/>

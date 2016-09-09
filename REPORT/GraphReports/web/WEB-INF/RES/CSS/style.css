@@ -8,6 +8,30 @@ and open the template in the editor.
     Author     : Stelan Briyan
 */
 
+.top-br{
+    background-color: #245269;
+    
+}
+
+.btn-top{
+    padding: 7px;
+    background-color: #31708f;
+    color: white;
+    float: right;
+}
+.btn-top:hover{
+    background-color: lightslategrey;
+    cursor: pointer;
+}
+
+.selectedDashboardbtn{
+    background-color: coral;
+}
+
+.selectedDashboardbtn:hover{
+    background-color: coral;
+}
+
 .item-detail{
     padding: 50px;
     background-color: white;

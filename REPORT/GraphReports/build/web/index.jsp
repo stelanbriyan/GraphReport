@@ -19,10 +19,21 @@
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
         <script src="JS/script.js" type="text/javascript"></script>
+
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>GRAPH REPORT</title>
     </head>
     <body>
         <div class="navbar-fixed-top">
+            <div class="top-br">
+                <div class="container-fluid">
+                    <div class="btn-top">Customer Dash Board</div>
+                    <div class="btn-top">Sales Dash Board</div>
+                    <a href="item-report"><div class="btn-top">Product Dash Board</div></a>
+                    <div class="btn-top selectedDashboardbtn">Category Dash Board</div>
+                </div>
+            </div>
             <div class="top-bar">
                 <div class="container-fluid">
                     <div class="row">
@@ -70,6 +81,8 @@
         <br/>
         <br/>
         <br/>
+        <br/>
+        <br/>
         <div class="container-fluid">
             <div class="row" id="area-chart">
                 <div class="col-md-12">
@@ -84,7 +97,7 @@
                 <br/>
                 <br/>
             </div>
-            
+
             <div class="row" id="pie-chart">
                 <div class="col-md-12">
                     <center>
@@ -111,7 +124,7 @@
                 <br/>
                 <br/>
             </div>
-            
+
             <div class="row" id="column-chart">
                 <div class="col-md-12" >
                     <center>
@@ -124,7 +137,7 @@
                 <br/>
                 <br/>
             </div>
-            
+
             <div class="row" id="line-chart">
                 <div class="col-md-12">
                     <center>
@@ -142,6 +155,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="item-detail" id="item-detail-info">
+                            <br/>
+                            <br/>
                             <table style="width: 400px">
                                 <tr>
                                     <td>
@@ -160,7 +175,7 @@
                                 </tr>
                             </table>
                             <br/>
-                            <table class="table table-striped table-bordered">
+                            <table id="table-id" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>INVOICE NO</th>
@@ -171,7 +186,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                    
+
                                 </tbody>
                             </table>
                         </div>

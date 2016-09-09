@@ -32,6 +32,7 @@ $(function () {
     hideAllChart();
     $('#area-chart').show();
     $('#search').on('click', function () {
+        $('.item-table').hide();
         var typeList = $('#typelist').val();
         var monthList = $('#monthList').val();
         var data = {
@@ -99,7 +100,7 @@ function loadPieChartOne(json) {
                         cursor: "pointer",
                         click: function (e) {
                             var inputData = {
-                                "type" : e.dataPoint.indexLabel
+                                "type": e.dataPoint.indexLabel
                             };
                             $.ajax({
                                 type: "POST",
@@ -130,7 +131,7 @@ function loadPieChartOne(json) {
                         cursor: "pointer",
                         click: function (e) {
                             var inputData = {
-                                "type" : e.dataPoint.label
+                                "type": e.dataPoint.label
                             };
                             $.ajax({
                                 type: "POST",
@@ -292,7 +293,19 @@ function loadItemTable(e, json) {
         tr.append("<td>" + json[i].selling_price + "</td>");
         $('#tbody').append(tr);
     }
-    
+
+//    $('#table-id').DataTable({
+//        pagingType: "full_numbers",
+//        ajax: json,
+//        columns: [
+//            {title: "invoice_no"},
+//            {title: "date"},
+//            {title: "item_name"},
+//            {title: "qty"},
+//            {title: "selling_price"}
+//        ]
+//    });
+
     $('.item-table').show();
     $("html, body").animate({
         scrollTop: $('#item-detail-info').offset().top - 50
