@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+var table = null;
 $(function () {
     $('.item-table').hide();
     $.ajax({
@@ -72,13 +72,13 @@ $(function () {
             }
         });
     });
+
+    table = $('#table-id').DataTable({
+        pagingType: "full_numbers"
+    });
 });
 function hideAllChart() {
     $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
-//    $('#pie-chart').hide();
-//    $('#bar-chart').hide();
-//    $('#column-chart').hide();
-//    $('#line-chart').hide();
 }
 
 function loadPieChartOne(json) {
@@ -282,29 +282,16 @@ function loadItemTable(e, json) {
     $('#type-name-item').text(e.dataPoint.indexLabel);
     $('#amount-item').text(e.dataPoint.y + " LKR");
 
-    var tr;
-    $('#tbody').empty();
+    table.clear();
     for (var i = 0; i < json.length; i++) {
-        tr = $('<tr/>');
-        tr.append("<td>" + json[i].invoice_no + "</td>");
-        tr.append("<td>" + json[i].date + "</td>");
-        tr.append("<td>" + json[i].item_name + "</td>");
-        tr.append("<td>" + json[i].qty + "</td>");
-        tr.append("<td>" + json[i].selling_price + "</td>");
-        $('#tbody').append(tr);
+        var rowData = [];
+        rowData.push(json[i].invoice_no); 
+        rowData.push(json[i].date);
+        rowData.push(json[i].item_name);
+        rowData.push(json[i].qty);
+        rowData.push(json[i].selling_price);
+        table.row.add(rowData).draw();
     }
-
-//    $('#table-id').DataTable({
-//        pagingType: "full_numbers",
-//        ajax: json,
-//        columns: [
-//            {title: "invoice_no"},
-//            {title: "date"},
-//            {title: "item_name"},
-//            {title: "qty"},
-//            {title: "selling_price"}
-//        ]
-//    });
 
     $('.item-table').show();
     $("html, body").animate({
