@@ -74,7 +74,11 @@ $(function () {
     });
 
     table = $('#table-id').DataTable({
-        pagingType: "full_numbers"
+        pagingType: "full_numbers",
+        columnDefs: [{
+                "targets": [0, 4],
+                "searchable": true
+            }]
     });
 });
 function hideAllChart() {
@@ -285,7 +289,7 @@ function loadItemTable(e, json) {
     table.clear();
     for (var i = 0; i < json.length; i++) {
         var rowData = [];
-        rowData.push(json[i].invoice_no); 
+        rowData.push(json[i].invoice_no);
         rowData.push(json[i].date);
         rowData.push(json[i].item_name);
         rowData.push(json[i].qty);
