@@ -30,26 +30,37 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
     private Session getSession() {
         return sessionFactory.openSession();
     }
-    
+
     public List readCustomers() {
         Session session = getSession();
-        String sql = "";
+        String sql = "SELECT  a.DebName FROM CASSIMS.dbo.fDebtor a ";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
 
     public List read(String customers, String months, String year) {
         Session session = getSession();
-        String sql = "";
+        String sql = "SELECT MONTH(b.TxnDate), a.DebName , sum(c.SellPrice) "
+                + "FROM CASSIMS.dbo.fDebtor a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
+                + "WHERE a.DebCode = b.DebCode AND b.RefNo = c.RefNo "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.DebName IN (" + customers + ") "
+                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
+                + "GROUP BY MONTH(b.TxnDate), a.DebName";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
 
     public List read(String customers, String year) {
         Session session = getSession();
-        String sql = "";
+        String sql = "SELECT  a.DebName , sum(c.SellPrice) "
+                + "FROM CASSIMS.dbo.fDebtor a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
+                + "WHERE a.DebCode = b.DebCode AND b.RefNo = c.RefNo "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.DebName IN (" + customers + ") "
+                + "GROUP BY a.DebName";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
-    
+
 }
