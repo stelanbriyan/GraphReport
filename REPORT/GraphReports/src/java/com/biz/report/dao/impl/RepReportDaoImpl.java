@@ -33,8 +33,7 @@ public class RepReportDaoImpl implements RepReportDao {
 
     public List readReps() {
         Session session = getSession();
-        String sql = "SELECT a.RepName "
-                + "FROM fSalRep a";
+        String sql = "SELECT a.RepName FROM fSalRep a";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
