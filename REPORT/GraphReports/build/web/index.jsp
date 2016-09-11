@@ -29,7 +29,7 @@
             <div class="top-br">
                 <div class="container-fluid">
                     <div class="btn-top">Customer Dash Board</div>
-                    <div class="btn-top">Sales Dash Board</div>
+                    <a href="rep-report"><div class="btn-top">Sales Dash Board</div></a>
                     <a href="item-report"><div class="btn-top">Product Dash Board</div></a>
                     <div class="btn-top selectedDashboardbtn">Category Dash Board</div>
                 </div>
