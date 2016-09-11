@@ -26,4 +26,9 @@ public class CommonURLController {
     public String loadRepReport() {
         return "rep_report";
     }
+    
+    @RequestMapping(value = "customer-report", method = RequestMethod.GET)
+    public String loadCustomerReport() {
+        return "customer-dashboard";
+    }
 }
