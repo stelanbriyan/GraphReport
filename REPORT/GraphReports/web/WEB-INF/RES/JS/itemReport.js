@@ -125,7 +125,7 @@ function loadPieChart(json) {
                         type: "pie",
                         showInLegend: true,
                         toolTipContent: "{y} - #percent %",
-                        yValueFormatString: "#0.#,,. Million",
+//                        yValueFormatString: "#0.#,,. Million",
                         legendText: "{indexLabel}",
                         dataPoints: json
                     }

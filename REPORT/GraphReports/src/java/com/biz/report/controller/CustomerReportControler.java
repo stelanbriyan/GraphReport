@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Aux-058
  */
 @Controller
+@RequestMapping(value = "v1/web/")
 public class CustomerReportControler {
     
     private Log logger = LogFactory.getLog(CustomerReportControler.class);

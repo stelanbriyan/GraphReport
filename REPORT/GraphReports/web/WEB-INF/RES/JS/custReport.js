@@ -8,7 +8,7 @@
 $(function () {
     $.ajax({
         type: "GET",
-        url: "v1/web/items",
+        url: "v1/web/customers",
         success: function (data, textStatus, jqXHR) {
             for (var property in data) {
                 var value = "'" + data[property] + "'";
@@ -33,11 +33,11 @@ $(function () {
     $('#area-chart').show();
     $('#search').on('click', function () {
         $('.item-table').hide();
-        var itemList = $('#list').val();
+        var customerList = $('#list').val();
         var monthList = $('#monthList').val();
         var jsonData = {
             "months": monthList,
-            "items": itemList
+            "customers": customerList
         };
         var chartType = $('#chart-type').val();
         if (chartType === 'Area Chart') {
@@ -59,7 +59,7 @@ $(function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "v1/web/itemreport/2016/get",
+            url: "v1/web/customerreport/2016/get",
             data: JSON.stringify(jsonData),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
@@ -125,7 +125,7 @@ function loadPieChart(json) {
                         type: "pie",
                         showInLegend: true,
                         toolTipContent: "{y} - #percent %",
-                        yValueFormatString: "#0.#,,. Million",
+//                        yValueFormatString: "#0.#,,. Million",
                         legendText: "{indexLabel}",
                         dataPoints: json
                     }
