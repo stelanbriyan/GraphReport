@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author Aux-058
  */
-@Controller
+@Controller(value = "v1/web")
 public class RepReportController {
     
     @Autowired
