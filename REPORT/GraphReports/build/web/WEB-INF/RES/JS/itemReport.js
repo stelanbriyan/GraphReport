@@ -8,7 +8,7 @@
 $(function () {
     $.ajax({
         type: "GET",
-        url: "v1/web/reps",
+        url: "v1/web/items",
         success: function (data, textStatus, jqXHR) {
             for (var property in data) {
                 var value = "'" + data[property] + "'";

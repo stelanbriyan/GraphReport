@@ -9,7 +9,7 @@
 $(function () {
     $.ajax({
         type: "GET",
-        url: "v1/web/items",
+        url: "v1/web/reps",
         success: function (data, textStatus, jqXHR) {
             for (var property in data) {
                 var value = "'" + data[property] + "'";
