@@ -35,13 +35,13 @@ public class ReportDaoImpl implements ReportDao {
     public List read(String types, String year, String months) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery(
-                "SELECT c.txnDate , b.typeName , sum(c.sellPrice) "
+                "SELECT MONTH(c.TxnDate) AS A , b.typeName , sum(c.sellPrice) "
                 + "FROM FItems a , FType b , FInvdet c "
                 + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
                 + "AND YEAR(c.txnDate) = " + year
                 + " AND b.TypeName IN (" + types + ") "
                 + "AND DATENAME(MONTH, c.txnDate) IN (" + months + ") "
-                + "GROUP BY b.typeName  ,  c.txnDate"
+                + "GROUP BY b.typeName  ,  MONTH(c.TxnDate) "
         );
 
         return sQLQuery.list();

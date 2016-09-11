@@ -35,12 +35,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            ITEMS :
                             <select class="selectpicker1" id="list" multiple>
 
                             </select>
-                            &nbsp;&nbsp;&nbsp;
-                            MONTHS :
                             <select class="selectpicker" id="monthList" multiple>
                                 <option value="'January'" selected>January</option>
                                 <option value="'February'" selected>February</option>
@@ -57,6 +54,13 @@
                             </select>
                             <select class="selectpicker" id="yearList" multiple>
                                 <option selected>2016</option>
+                            </select>
+                            <select class="selectpicker" id="chart-type">
+                                <option selected>Area Chart</option>
+                                <option>Pie Chart</option>
+                                <option>Bar Chart</option>
+                                <option>Column Chart</option>
+                                <option>Line Chart</option>
                             </select>
                             <button id="search" class="btn btn-default">Search</button>
                             <img style="float: right;height: 40px;margin-right: 20px" src="IMG/logo_1.jpg" alt=""/>

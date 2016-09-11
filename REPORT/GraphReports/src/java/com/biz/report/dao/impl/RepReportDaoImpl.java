@@ -40,17 +40,24 @@ public class RepReportDaoImpl implements RepReportDao {
 
     public List read(String reps, String months, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT c.TxnDate, a.RepName , sum(c.SellPrice) "
+        Query sQLQuery = session.createSQLQuery("SELECT MONTH(c.TxnDate) AS A, a.RepName , sum(c.SellPrice) "
                 + "FROM fSalRep a , fInvhed b , fInvdet c "
                 + "WHERE a.RepCode = b.RepCode AND b.RefNo = c.RefNo "
-                + "AND YEAR(b.TxnDate) = 2016  "
-                + "GROUP BY c.TxnDate, a.RepName");
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.RepName IN (" + reps + ") "
+                + "AND DATENAME(MONTH, c.TxnDate) IN (" + months + ") "
+                + "GROUP BY MONTH(c.TxnDate)  , a.RepName");
         return sQLQuery.list();
     }
-
+                
     public List read(String reps, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("");
+        Query sQLQuery = session.createSQLQuery("SELECT a.RepName , sum(c.SellPrice) "
+                + "FROM CASSIMS.dbo.fSalRep a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
+                + "WHERE a.RepCode = b.RepCode AND b.RefNo = c.RefNo "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.RepName IN (" + reps + ") "
+                + "GROUP BY a.RepName");
         return sQLQuery.list();
     }
 
