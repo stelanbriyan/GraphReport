@@ -32,13 +32,30 @@ $(function () {
     hideAllChart();
     $('#area-chart').show();
     $('#search').on('click', function () {
+        $('.item-table').hide();
         var itemList = $('#list').val();
         var monthList = $('#monthList').val();
         var jsonData = {
             "months": monthList,
             "items": itemList
         };
-
+        var chartType = $('#chart-type').val();
+        if (chartType === 'Area Chart') {
+            hideAllChart();
+            $('#area-chart').show();
+        } else if (chartType === 'Pie Chart') {
+            hideAllChart();
+            $('#pie-chart').show();
+        } else if (chartType === 'Bar Chart') {
+            hideAllChart();
+            $('#bar-chart').show();
+        } else if (chartType === 'Column Chart') {
+            hideAllChart();
+            $('#column-chart').show();
+        } else if (chartType === 'Line Chart') {
+            hideAllChart();
+            $('#line-chart').show();
+        }
         $.ajax({
             type: "POST",
             contentType: "application/json",
