@@ -7,6 +7,7 @@
 
 
 $(function () {
+    $('.item-table').hide();
     $.ajax({
         type: "GET",
         url: "v1/web/reps",
@@ -24,19 +25,39 @@ $(function () {
             console.log(errorThrown);
         }
     });
-
+    hideAllChart();
+    $('#area-chart').show();
     $('.selectpicker').selectpicker({
         style: 'btn-info',
         size: 12
     });
 
     $('#search').on('click', function () {
+        $('.item-table').hide();
         var repList = $('#list').val();
         var monthList = $('#monthList').val();
         var jsonData = {
             "months": monthList,
             "reps": repList
         };
+        var chartType = $('#chart-type').val();
+        if (chartType === 'Area Chart') {
+            hideAllChart();
+            $('#area-chart').show();
+        } else if (chartType === 'Pie Chart') {
+            hideAllChart();
+            $('#pie-chart').show();
+        } else if (chartType === 'Bar Chart') {
+            hideAllChart();
+            $('#bar-chart').show();
+        } else if (chartType === 'Column Chart') {
+            hideAllChart();
+            $('#column-chart').show();
+        } else if (chartType === 'Line Chart') {
+            hideAllChart();
+            $('#line-chart').show();
+        }
+
 
         $.ajax({
             type: "POST",
@@ -132,7 +153,9 @@ function loadBarChart(json) {
             });
     chart3.render();
 }
-
+function hideAllChart() {
+    $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
+}
 function loadColumnChart(json) {
     var chart4 = new CanvasJS.Chart("chartContainer4", {
         title: {

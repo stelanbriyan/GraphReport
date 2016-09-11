@@ -25,7 +25,7 @@
         <div class="navbar-fixed-top">
             <div class="top-br">
                 <div class="container-fluid">
-                    <div class="btn-top">Customer Dash Board</div>
+                    <a href="customer-report"><div class="btn-top">Customer Dash Board</div></a>
                     <div class="btn-top selectedDashboardbtn">Sales Dash Board</div>
                     <a href="item-report"><div class="btn-top">Product Dash Board</div></a>
                     <a href="/GraphReports/"><div class="btn-top">Category Dash Board</div></a>
