@@ -29,7 +29,8 @@ $(function () {
         style: 'btn-info',
         size: 12
     });
-
+    hideAllChart();
+    $('#area-chart').show();
     $('#search').on('click', function () {
         var itemList = $('#list').val();
         var monthList = $('#monthList').val();
@@ -190,4 +191,8 @@ function loadLineChart(json) {
             });
 
     chart.render();
+}
+
+function hideAllChart() {
+    $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
 }

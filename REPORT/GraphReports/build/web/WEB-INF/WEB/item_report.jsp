@@ -35,14 +35,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            ITEMS :
                             <select class="selectpicker1" id="list" multiple>
                                 <!--                                <option value="'Residential'">Residential</option>
                                                                 <option value="'X-RITE'">X-RITE</option>
                                                                 <option value="'ATLAS'">ATLAS</option>-->
                             </select>
-                            &nbsp;&nbsp;&nbsp;
-                            MONTHS :
                             <select class="selectpicker" id="monthList" multiple>
                                 <option value="'January'" selected>January</option>
                                 <option value="'February'" selected>February</option>
@@ -81,7 +78,7 @@
         <br/>
         <br/>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="area-chart">
                 <div class="col-md-12">
                     <center>
                         <span class="head1">AREA CHART</span><br/>
@@ -91,46 +88,51 @@
                         <div id="chartContainer1"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-6">
+
+            <div class="row" id="pie-chart">
+                <div class="col-md-12">
                     <center>
                         <span class="head1">PIE CHART</span><br/>
                         <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer2"></div>
-                    </div>            
+                    </div>        
                 </div>
-                <div class="col-md-6">
+                <br/>
+                <br/>
+            </div>
+
+            <div class="row" id="bar-chart">
+                <div class="col-md-12">
                     <center>
                         <span class="head1">BAR CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer3"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-12">
+
+            <div class="row" id="column-chart">
+                <div class="col-md-12" >
                     <center>
                         <span class="head1">COLUMN CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
                     </center><br/>
                     <div class="chart">
                         <div id="chartContainer4"></div>
                     </div>            
                 </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <div class="row">
+
+            <div class="row" id="line-chart">
                 <div class="col-md-12">
                     <center>
                         <span class="head1">LINE CHART</span><br/>
@@ -138,11 +140,12 @@
                     <div class="chart">
                         <div id="chartContainer5"></div>
                     </div>            
-                </div>
+                </div>                
+                <br/>
+                <br/>
             </div>
-
-
         </div>
+        
         <br/>
         <br/>
         <div class="bottom_of_report">
