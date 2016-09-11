@@ -52,7 +52,7 @@ public class RepReportController {
         logger.info(data);
         Assert.notNull(data, "Data is null.");
         Assert.notNull(year, "Year is null.");
-        String items = data.get("items").toString();
+        String items = data.get("reps").toString();
         String months = data.get("months").toString();
         ReportDataSet reportDataSet = repReportService.getReports(items, months, year);
         HttpHeaders headers = new HttpHeaders();
