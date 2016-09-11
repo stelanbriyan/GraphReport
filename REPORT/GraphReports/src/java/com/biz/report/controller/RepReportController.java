@@ -44,7 +44,6 @@ public class RepReportController {
         return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
     }
     
-    
     @ResponseBody
     @RequestMapping(value = "repreport/{year}/get", method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public ResponseEntity<ReportDataSet> readFTypes(@PathVariable("year") String year,
