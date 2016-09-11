@@ -1,6 +1,6 @@
 <%-- 
-    Document   : itemReport
-    Created on : Sep 5, 2016, 10:30:30 PM
+    Document   : rep_report
+    Created on : Sep 11, 2016, 5:31:19 PM
     Author     : Stelan Briyan
 --%>
 
@@ -18,8 +18,8 @@
 
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
-        <script src="JS/itemReport.js" type="text/javascript"></script>
-        <title>GRAPH REPORT</title>
+        <script src="JS/repReport.js" type="text/javascript"></script>        
+        <title>SALES DASHBOARD</title>
     </head>
     <body>
         <div class="navbar-fixed-top">
@@ -60,13 +60,6 @@
                             <select class="selectpicker" id="yearList" multiple>
                                 <option selected>2016</option>
                             </select>
-                            <select class="selectpicker" id="chart-type">
-                                <option selected>Area Chart</option>
-                                <option>Pie Chart</option>
-                                <option>Bar Chart</option>
-                                <option>Column Chart</option>
-                                <option>Line Chart</option>
-                            </select>
                             <button id="search" class="btn btn-default">Search</button>
                             <img style="float: right;height: 40px;margin-right: 20px" src="IMG/logo_1.jpg" alt=""/>
                         </div>
@@ -74,80 +67,7 @@
                 </div>
             </div>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <center>
-                        <span class="head1">AREA CHART</span><br/>
-                        <span class="head2"> Interested in cumulative totals over a period of time or range of values.</span>
-                    </center><br/>
-                    <div class="chart">
-                        <div id="chartContainer1"></div>
-                    </div>            
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-6">
-                    <center>
-                        <span class="head1">PIE CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
-                    </center><br/>
-                    <div class="chart">
-                        <div id="chartContainer2"></div>
-                    </div>            
-                </div>
-                <div class="col-md-6">
-                    <center>
-                        <span class="head1">BAR CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
-                    </center><br/>
-                    <div class="chart">
-                        <div id="chartContainer3"></div>
-                    </div>            
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-12">
-                    <center>
-                        <span class="head1">COLUMN CHART</span><br/>
-                        <!--<span class="head2">The folks over at MaxCDN graciously provide CDN support for Bootstrap's CSS and JavaScript. Just use these Bootstrap CDN links.</span>-->
-                    </center><br/>
-                    <div class="chart">
-                        <div id="chartContainer4"></div>
-                    </div>            
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <div class="row">
-                <div class="col-md-12">
-                    <center>
-                        <span class="head1">LINE CHART</span><br/>
-                    </center><br/>
-                    <div class="chart">
-                        <div id="chartContainer5"></div>
-                    </div>            
-                </div>
-            </div>
-
-
-        </div>
-        <br/>
-        <br/>
-        <div class="bottom_of_report">
-            <center>GRAPH SALES REPORT @ 2016  </center>
-        </div>
-
+        
+        
     </body>
 </html>

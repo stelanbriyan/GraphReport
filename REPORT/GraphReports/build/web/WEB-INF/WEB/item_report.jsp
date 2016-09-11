@@ -18,7 +18,6 @@
 
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
-        <!--<script src="JS/script.js" type="text/javascript"></script>-->
         <script src="JS/itemReport.js" type="text/javascript"></script>
         <title>GRAPH REPORT</title>
     </head>
@@ -60,6 +59,13 @@
                             </select>
                             <select class="selectpicker" id="yearList" multiple>
                                 <option selected>2016</option>
+                            </select>
+                            <select class="selectpicker" id="chart-type">
+                                <option selected>Area Chart</option>
+                                <option>Pie Chart</option>
+                                <option>Bar Chart</option>
+                                <option>Column Chart</option>
+                                <option>Line Chart</option>
                             </select>
                             <button id="search" class="btn btn-default">Search</button>
                             <img style="float: right;height: 40px;margin-right: 20px" src="IMG/logo_1.jpg" alt=""/>
