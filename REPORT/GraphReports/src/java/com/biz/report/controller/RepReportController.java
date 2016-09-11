@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Aux-058
  */
 @Controller
-@RequestMapping(value = "v1/web")
+@RequestMapping(value = "v1/web/")
 public class RepReportController {
 
     @Autowired
