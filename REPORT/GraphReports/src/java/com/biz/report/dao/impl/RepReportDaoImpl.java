@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class RepReportDaoImpl implements RepReportDao {
-    
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -33,7 +33,9 @@ public class RepReportDaoImpl implements RepReportDao {
 
     public List readReps() {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("");
+        String sql = "SELECT a.RepName "
+                + "FROM fSalRep a";
+        Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
 
@@ -48,5 +50,5 @@ public class RepReportDaoImpl implements RepReportDao {
         Query sQLQuery = session.createSQLQuery("");
         return sQLQuery.list();
     }
-    
+
 }
