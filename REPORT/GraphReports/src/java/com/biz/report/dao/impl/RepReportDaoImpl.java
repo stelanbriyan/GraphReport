@@ -13,17 +13,19 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Aux-058
  */
+@Repository
 public class RepReportDaoImpl implements RepReportDao {
     
     @Autowired
     private SessionFactory sessionFactory;
 
-    Log logger = LogFactory.getLog(RepReportDaoImpl.class);
+    private final Log logger = LogFactory.getLog(RepReportDaoImpl.class);
 
     private Session getSession() {
         return sessionFactory.openSession();
