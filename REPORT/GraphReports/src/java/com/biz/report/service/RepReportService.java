@@ -19,7 +19,7 @@ import java.util.List;
  */
 public interface RepReportService {
     
-    List<String> readItems();
+    List<String> readReps();
     
     List<Report1DataSet> readDataForAreaChart(String reps, String months, String year);
     

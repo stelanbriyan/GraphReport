@@ -6,10 +6,15 @@
 package com.biz.report.controller;
 
 import com.biz.report.service.RepReportService;
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -22,4 +27,13 @@ public class RepReportController {
     private RepReportService repReportService;
     
     private final Log logger = LogFactory.getLog(RepReportController.class);
+    
+    @RequestMapping(value = "/reps")
+    private ResponseEntity<List<String>> readReps() {
+        List<String> list = repReportService.readReps();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
+    }
 }

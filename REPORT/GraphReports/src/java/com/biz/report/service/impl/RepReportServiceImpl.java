@@ -37,7 +37,7 @@ public class RepReportServiceImpl implements RepReportService {
     
     private final Log logger = LogFactory.getLog(RepReportServiceImpl.class);
 
-    public List<String> readItems() {
+    public List<String> readReps() {
         return repReportDao.readReps();
     }
 
