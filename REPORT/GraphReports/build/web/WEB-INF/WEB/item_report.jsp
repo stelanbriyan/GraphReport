@@ -25,10 +25,10 @@
         <div class="navbar-fixed-top">
             <div class="top-br">
                 <div class="container-fluid">
-                    <a href="customer-report"><div class="btn-top">Customer Dash Board</div></a>
-                    <a href="rep-report"><div class="btn-top">Sales Dash Board</div></a>
-                    <div class="btn-top selectedDashboardbtn">Product Dash Board</div>
-                    <a href="/GraphReports/"><div class="btn-top">Category Dash Board</div></a>
+                    <a href="customer-report"><div class="btn-top">Customer DashBoard</div></a>
+                    <a href="rep-report"><div class="btn-top">Sales DashBoard</div></a>
+                    <div class="btn-top selectedDashboardbtn">Product DashBoard</div>
+                    <a href="/GraphReports/"><div class="btn-top">Category DashBoard</div></a>
                 </div>
             </div>
             <div class="top-bar">
