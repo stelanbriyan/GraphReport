@@ -60,14 +60,24 @@ public class ReportDaoImpl implements ReportDao {
         return sQLQuery.list();
     }
 
-    public List readItemByType(String type, String year) {
+    public List readItemByType(String type, String year, String month) {
         Session session = getSession();
-        Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
-                + "FROM fitems a , FType b , FInvdet c  "
-                + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
-                + "AND YEAR(c.txnDate) =  " + year + " "
-                + "AND b.TypeName = '" + type + "'");
-        return query.list();
+        if (month == null) {
+            Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
+                    + "FROM fitems a , FType b , FInvdet c  "
+                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                    + "AND YEAR(c.txnDate) =  " + year + " "
+                    + "AND b.TypeName = '" + type + "'");
+            return query.list();
+        } else {
+            Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
+                    + "FROM fitems a , FType b , FInvdet c  "
+                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                    + "AND YEAR(c.txnDate) =  " + year + " "
+                    + "AND DATENAME(MONTH, c.txnDate) = " + month + " "
+                    + "AND b.TypeName = " + type);
+            return query.list();
+        }
     }
 
     public List readType() {

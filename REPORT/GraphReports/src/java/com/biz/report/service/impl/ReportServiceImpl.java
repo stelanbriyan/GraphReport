@@ -18,12 +18,8 @@ import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ReportService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -231,8 +227,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ItemDTO> readItemByType(String type, String year) {
-        List list = reportDao.readItemByType(type, year);
+    public List<ItemDTO> readItemByType(String type, String year, String month) {
+        List list = reportDao.readItemByType(type, year, month);
         List<ItemDTO> itemDTOs = new ArrayList<ItemDTO>();
         for (Object object : list) {
             ItemDTO itemDTO = constructItemDTO(object);

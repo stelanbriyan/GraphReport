@@ -71,8 +71,9 @@ public class ReportController {
         Assert.notNull(year, "Year is null.");
         Assert.notNull(map, "Type is null.");
         String type = map.get("type").toString();
+        String month = map.get("month") != null ? map.get("month").toString() : null;
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
-        return new ResponseEntity<List<ItemDTO>>(reportService.readItemByType(type, year), headers, HttpStatus.OK);
+        return new ResponseEntity<List<ItemDTO>>(reportService.readItemByType(type, year, month), headers, HttpStatus.OK);
     }
 }

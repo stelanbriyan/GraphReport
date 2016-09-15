@@ -34,5 +34,5 @@ public interface ReportService {
 
     public List<String> getTypes();
     
-    public List<ItemDTO> readItemByType(String type, String year);
+    public List<ItemDTO> readItemByType(String type, String year, String month);
 }

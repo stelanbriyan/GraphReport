@@ -159,6 +159,38 @@ function loadPieChartOne(json) {
 }
 function loadChart(json) {
 
+    var chart1Data = [];
+
+    for (var i = 0; i < json.report_1.length; i++) {
+        var x = {
+            type: "stackedArea",
+            name: json.report_1[i].name,
+            showInLegend: "true",
+            dataPoints: json.report_1[i].dataPoints,
+            cursor: "pointer",
+            click: function (e) {
+                var inputData = {
+                    "type": e.dataSeries.name,
+                    "month" : e.dataPoint.label
+                };
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "v1/web/items/2016/read",
+                    data: JSON.stringify(inputData),
+                    dataType: 'json',
+                    success: function (jsonData, textStatus, jqXHR) {
+                        loadItemTable(e, jsonData);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        };
+        chart1Data.push(x);
+    }
+    
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         title: {
             text: "",
@@ -179,7 +211,7 @@ function loadChart(json) {
             verticalAlign: "bottom",
             horizontalAlign: "center"
         },
-        data: json.report_1,
+        data: chart1Data,
         legend: {
             cursor: "pointer",
             itemclick: function (e) {
@@ -192,11 +224,44 @@ function loadChart(json) {
             }
         }
     });
+    
+    var chart4Data = [];
+
+    for (var i = 0; i < json.report_1.length; i++) {
+        var x = {
+            type: "column",
+            name: json.report_1[i].name,
+            showInLegend: "true",
+            dataPoints: json.report_1[i].dataPoints,
+            cursor: "pointer",
+            click: function (e) {
+                var inputData = {
+                    "type": e.dataSeries.name,
+                    "month" : e.dataPoint.label
+                };
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "v1/web/items/2016/read",
+                    data: JSON.stringify(inputData),
+                    dataType: 'json',
+                    success: function (jsonData, textStatus, jqXHR) {
+                        loadItemTable(e, jsonData);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        };
+        chart4Data.push(x);
+    }
+
     var chart4 = new CanvasJS.Chart("chartContainer4", {
         title: {
             text: ""
         },
-        data: json.report_4,
+        data: chart4Data,
         legend: {
             cursor: "pointer",
             itemclick: function (e) {
@@ -209,6 +274,39 @@ function loadChart(json) {
             }
         }
     });
+    
+    var chart5Data = [];
+
+    for (var i = 0; i < json.report_1.length; i++) {
+        var x = {
+            type: "line",
+            name: json.report_1[i].name,
+            showInLegend: "true",
+            dataPoints: json.report_1[i].dataPoints,
+            cursor: "pointer",
+            click: function (e) {
+                var inputData = {
+                    "type": e.dataSeries.name,
+                    "month" : e.dataPoint.label
+                };
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "v1/web/items/2016/read",
+                    data: JSON.stringify(inputData),
+                    dataType: 'json',
+                    success: function (jsonData, textStatus, jqXHR) {
+                        loadItemTable(e, jsonData);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        };
+        chart5Data.push(x);
+    }
+
     var chart = new CanvasJS.Chart("chartContainer5",
             {
                 zoomEnabled: false,
@@ -229,7 +327,7 @@ function loadChart(json) {
                     fontSize: 15,
                     fontFamily: "Lucida Sans Unicode"
                 },
-                data: json.report_5,
+                data: chart5Data,
                 legend: {
                     cursor: "pointer",
                     itemclick: function (e) {
@@ -294,8 +392,9 @@ function loadItemTable(e, json) {
         rowData.push(json[i].item_name);
         rowData.push(json[i].qty);
         rowData.push(json[i].selling_price);
-        table.row.add(rowData).draw();
+        table.row.add(rowData);
     }
+    table.draw();
 
     $('.item-table').show();
     $("html, body").animate({
