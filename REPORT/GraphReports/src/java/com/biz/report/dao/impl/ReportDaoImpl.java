@@ -85,4 +85,12 @@ public class ReportDaoImpl implements ReportDao {
         Query sQLQuery = session.createSQLQuery("SELECT a.typeName FROM FType a GROUP BY  a.typeName");
         return sQLQuery.list();
     }
+    
+    public List readYears() {
+        Session session = getSession();
+        Query sQLQuery = session.createSQLQuery("SELECT YEAR(c.txnDate) "
+                + "FROM FInvdet c "
+                + "GROUP BY YEAR(c.TxnDate)");
+        return sQLQuery.list();
+    }
 }

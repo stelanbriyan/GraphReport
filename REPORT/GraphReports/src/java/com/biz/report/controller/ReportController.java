@@ -76,4 +76,13 @@ public class ReportController {
         headers.add("success", "Success");
         return new ResponseEntity<List<ItemDTO>>(reportService.readItemByType(type, year, month), headers, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/years")
+    public ResponseEntity<List<String>> readYears() {
+        List<String> list = reportService.readYears();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
+    }
 }

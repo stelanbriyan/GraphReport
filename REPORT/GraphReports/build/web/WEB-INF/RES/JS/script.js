@@ -25,6 +25,22 @@ $(function () {
             console.log(errorThrown);
         }
     });
+    $.ajax({
+        type: "POST",
+        url: "v1/web/years",
+        success: function (data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) {
+                $('#yearList').append('<option value="' + data[i] + '">' + data[i] + '</option>');
+            }
+            $('#yearList').selectpicker({
+                style: 'btn-info',
+                size: 12
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
     $('.selectpicker').selectpicker({
         style: 'btn-info',
         size: 12
@@ -39,6 +55,7 @@ $(function () {
             "months": monthList,
             "types": typeList
         };
+        var year = $('#yearList').val();
         var chartType = $('#chart-type').val();
         if (chartType === 'Area Chart') {
             hideAllChart();
@@ -60,7 +77,7 @@ $(function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "v1/web/report/2016/get",
+            url: "v1/web/report/" + year + "/get",
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
@@ -106,10 +123,11 @@ function loadPieChartOne(json) {
                             var inputData = {
                                 "type": e.dataPoint.indexLabel
                             };
+                            var year = $('#yearList').val();
                             $.ajax({
                                 type: "POST",
                                 contentType: "application/json",
-                                url: "v1/web/items/2016/read",
+                                url: "v1/web/items/" + year + "/read",
                                 data: JSON.stringify(inputData),
                                 dataType: 'json',
                                 success: function (jsonData, textStatus, jqXHR) {
@@ -137,10 +155,11 @@ function loadPieChartOne(json) {
                             var inputData = {
                                 "type": e.dataPoint.label
                             };
+                            var year = $('#yearList').val();
                             $.ajax({
                                 type: "POST",
                                 contentType: "application/json",
-                                url: "v1/web/items/2016/read",
+                                url: "v1/web/items/" + year + "/read",
                                 data: JSON.stringify(inputData),
                                 dataType: 'json',
                                 success: function (jsonData, textStatus, jqXHR) {
@@ -173,10 +192,11 @@ function loadChart(json) {
                     "type": e.dataSeries.name,
                     "month" : e.dataPoint.label
                 };
+                var year = $('#yearList').val();
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
-                    url: "v1/web/items/2016/read",
+                    url: "v1/web/items/" + year + "/read",
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
@@ -239,10 +259,11 @@ function loadChart(json) {
                     "type": e.dataSeries.name,
                     "month" : e.dataPoint.label
                 };
+                var year = $('#yearList').val();
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
-                    url: "v1/web/items/2016/read",
+                    url: "v1/web/items/" + year + "/read",
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
@@ -289,10 +310,11 @@ function loadChart(json) {
                     "type": e.dataSeries.name,
                     "month" : e.dataPoint.label
                 };
+                var year = $('#yearList').val();
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
-                    url: "v1/web/items/2016/read",
+                    url: "v1/web/items/" + year + "/read",
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
@@ -344,41 +366,6 @@ function loadChart(json) {
     chart1.render();
     chart4.render();
 }
-
-
-
-
-
-//var data1 = [
-//    {
-//        type: "stackedArea",
-//        name: "cars",
-//        showInLegend: "true",
-//        dataPoints: [
-//            {"label": "Jan", "y": 100},
-//            {"label": "Feb", "y": 500},
-//            {"label": "March", "y": 400},
-//            {"label": "April", "y": 600},
-//            {"label": "May", "y": 400},
-//            {"label": "June", "y": 400},
-//            {"label": "July", "y": 300},
-//            {"label": "Aug", "y": 400},
-//            {"label": "Sep", "y": 140},
-//            {"label": "Oct", "y": 700}
-//        ]
-//    }
-//];
-
-//    var data2 = [
-//        {y: 4181563, indexLabel: "PlayStation 3"},
-//        {y: 2175498, indexLabel: "Wii"},
-//        {y: 3125844, indexLabel: "Xbox 360"},
-//        {y: 1176121, indexLabel: "Nintendo DS"},
-//        {y: 1727161, indexLabel: "PSP"},
-//        {y: 4303364, indexLabel: "Nintendo 3DS"},
-//        {y: 1717786, indexLabel: "PS Vita"}
-//    ];
-
 
 function loadItemTable(e, json) {
     $('#type-name-item').text(e.dataPoint.indexLabel);

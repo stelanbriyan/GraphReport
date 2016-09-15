@@ -20,4 +20,6 @@ public interface ReportDao {
     public List readType();
     
     public List readItemByType(String type, String year, String month);
+    
+    public List readYears();
 }

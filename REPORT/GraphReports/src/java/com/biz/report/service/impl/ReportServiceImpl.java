@@ -247,4 +247,9 @@ public class ReportServiceImpl implements ReportService {
         itemDTO.setSellingPrice(obAr[4].toString());
         return itemDTO;
     }
+    
+    @Override
+    public List<String> readYears() {
+        return reportDao.readYears();
+    }
 }
