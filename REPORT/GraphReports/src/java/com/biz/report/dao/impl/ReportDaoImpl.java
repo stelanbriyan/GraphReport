@@ -87,7 +87,7 @@ public class ReportDaoImpl implements ReportDao {
                     + "AND b.TypeName = " + type);
             return query.list();
     }
-
+ 
     public List readType() {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.typeName FROM FType a GROUP BY  a.typeName");

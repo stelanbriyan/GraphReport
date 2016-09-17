@@ -49,7 +49,7 @@ public class RepReportDaoImpl implements RepReportDao {
                 + "GROUP BY MONTH(c.TxnDate)  , a.RepName");
         return sQLQuery.list();
     }
-                
+
     public List read(String reps, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.RepName , sum(c.SellPrice) "
@@ -60,10 +60,17 @@ public class RepReportDaoImpl implements RepReportDao {
                 + "GROUP BY a.RepName");
         return sQLQuery.list();
     }
-    
-    
-    public void readByRepName(String reps , String year, String months){
-        String sql = "";
+
+    public List readByRepName(String reps, String year, String months) {
+        Session session = getSession();
+        String sql = "SELECT c.RefNo, d.ItemName , c.TxnDate ,c.Qty , c.SellPrice "
+                + "FROM fSalRep a , fInvhed b , fInvdet c , fitems d "
+                + "WHERE a.RepCode = b.RepCode AND b.RefNo = c.RefNo AND c.Itemcode = d.ItemCode "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND a.RepName = " + reps + " "
+                + "AND DATENAME(MONTH, c.TxnDate) IN (" + months + ") ";
+        Query query = session.createSQLQuery(sql);
+        return query.list();
     }
 
 }
