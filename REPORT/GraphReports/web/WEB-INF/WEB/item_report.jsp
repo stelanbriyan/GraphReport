@@ -144,6 +144,50 @@
                 <br/>
                 <br/>
             </div>
+            
+            
+            <div class="item-table">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="item-detail" id="item-detail-info">
+                            <br/>
+                            <br/>
+<!--                            <table style="width: 400px">
+                                <tr>
+                                    <td>
+                                        <div style="background-color: #fafcfe;padding: 10px;border-left: 4px solid #269abc;">
+                                            <dt>Type Name</dt>
+                                            <dd style="font-size: 20px;" id="type-name-item"></dd>
+                                        </div>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <div style="background-color: #fafcfe;padding: 10px;margin-left: 5px;border-left: 4px solid #269abc;">
+                                            <dt>Total Selling Price</dt>
+                                            <dd style="font-size: 20px;" id="amount-item"></dd>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>-->
+                            <br/>
+                            <table id="table-id" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>INVOICE NO</th>
+                                        <th>DATE</th>
+                                        <th>TYPE NAME</th>
+                                        <th>QTY</th>
+                                        <th>SELLING PRICE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <br/>
