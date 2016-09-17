@@ -39,7 +39,7 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
         return sQLQuery.list();
     }
-    
+
     public List read(String items, String months, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT MONTH(b.TxnDate) AS A  , a.ItemName , sum(b.SellPrice) "
@@ -59,34 +59,23 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.ItemName IN (" + items + ") "
-//                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
+                //                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.ItemName ");
         return sQLQuery.list();
     }
 
-    public List readByItemName(String itemName , String year, String month){
+    public List readByItemName(String itemName, String year, String month) {
         List list = null;
         Session session = getSession();
-        if(month == null){
-            String sql = "SELECT c.RefNo, c.txnDate , b.TypeName , c.Qty , c.sellPrice "
-                    + "FROM fitems a , FType b , FInvdet c  "
-                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
-                    + "AND YEAR(c.txnDate) =  " + year + " "
-                    + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
-                    + "AND a.ItemName = " + itemName ;
-            Query query = session.createSQLQuery(sql);
-            list = query.list();
-        }else{
-            String sql = "SELECT c.RefNo, c.txnDate , b.TypeName , c.Qty , c.sellPrice "
-                    + "FROM fitems a , FType b , FInvdet c  "
-                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
-                    + "AND YEAR(c.txnDate) =  " + year + " "
-                    + "AND DATENAME(MONTH, c.txnDate) = " + month + " "
-                    + "AND a.ItemName = " + itemName ;
-            Query query = session.createSQLQuery(sql);
-            list = query.list();
-        }        
-        return list;       
+        String sql = "SELECT c.RefNo, c.txnDate , b.TypeName , c.Qty , c.sellPrice "
+                + "FROM fitems a , FType b , FInvdet c  "
+                + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                + "AND YEAR(c.txnDate) =  " + year + " "
+                + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
+                + "AND a.ItemName = " + itemName;
+        Query query = session.createSQLQuery(sql);
+        list = query.list();
+        return list;
     }
-    
+
 }
