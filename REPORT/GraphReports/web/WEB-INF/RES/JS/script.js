@@ -121,7 +121,8 @@ function loadPieChartOne(json) {
                         cursor: "pointer",
                         click: function (e) {
                             var inputData = {
-                                "type": e.dataPoint.indexLabel
+                                "type": e.dataPoint.indexLabel,
+                                "month": $('#monthList').val()
                             };
                             var year = $('#yearList').val();
                             $.ajax({

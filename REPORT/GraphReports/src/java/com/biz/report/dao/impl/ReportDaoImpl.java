@@ -84,7 +84,7 @@ public class ReportDaoImpl implements ReportDao {
                     + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
                     + "AND YEAR(c.txnDate) =  " + year + " "
                     + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
-                    + "AND b.TypeName = '" + type + "'");
+                    + "AND b.TypeName = " + type);
             return query.list();
     }
 

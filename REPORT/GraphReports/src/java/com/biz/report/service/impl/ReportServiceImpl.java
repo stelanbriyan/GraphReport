@@ -228,6 +228,12 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<ItemDTO> readItemByType(String type, String year, String month) {
+        if (!StringUtils.isEmpty(month) && month.contains("[")) {
+            month = month.substring(1, month.length() - 1);
+        }
+        if (!StringUtils.isEmpty(type) && !type.contains("'")) {
+            type = "'" + type + "'";
+        }
         List list = reportDao.readItemByType(type, year, month);
         List<ItemDTO> itemDTOs = new ArrayList<ItemDTO>();
         for (Object object : list) {
@@ -247,7 +253,7 @@ public class ReportServiceImpl implements ReportService {
         itemDTO.setSellingPrice(obAr[4].toString());
         return itemDTO;
     }
-    
+
     @Override
     public List<String> readYears() {
         return reportDao.readYears();
