@@ -18,4 +18,6 @@ public interface ItemDashBoardDao {
     List read(String items, String months, String year);
     
     List read(String items, String year);
+    
+    List readByItemName(String itemName, String year, String month);
 }

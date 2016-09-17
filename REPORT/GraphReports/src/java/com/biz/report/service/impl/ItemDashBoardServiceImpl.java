@@ -16,6 +16,7 @@ import com.biz.report.dto.Report3DataSet;
 import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
+import com.biz.report.dto.SalesDTO;
 import com.biz.report.service.ItemDashBoardService;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +100,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         }
         return dataSets;
     }
-    
+
     public List<Report4DataSet> readDataForColumnChart(String items, String months, String year) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
@@ -130,8 +131,8 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         }
         return dataSets;
     }
-    
-    public List<Report5DataSet> readDataForLineChart(String items, String months, String year){
+
+    public List<Report5DataSet> readDataForLineChart(String items, String months, String year) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
         }
@@ -162,6 +163,34 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         return dataSets;
     }
 
+    @Override
+    public List<SalesDTO> readByItemName(String itemName, String year, String month) {
+        if (!StringUtils.isEmpty(month) && month.contains("[")) {
+            month = month.substring(1, month.length() - 1);
+        }
+        if (!StringUtils.isEmpty(itemName) && !itemName.contains("'")) {
+            itemName = "'" + itemName + "'";
+        }
+        List list = itemDashBoardDao.readByItemName(itemName, year, month);
+        List<SalesDTO> salesDTOs = new ArrayList<SalesDTO>();
+        for (Object object : list) {
+            SalesDTO salesDTO = constructorSalesDTO(object);
+            salesDTOs.add(salesDTO);
+        }
+        return salesDTOs;
+    }
+
+    private SalesDTO constructorSalesDTO(Object object) {
+        Object[] ob = (Object[]) object;
+        SalesDTO salesDTO = new SalesDTO();
+        salesDTO.setRefNo(ob[0].toString());
+        salesDTO.setTxtDate(ob[1].toString().substring(0, 10));
+        salesDTO.setTypeName(ob[2].toString());
+        salesDTO.setQty(ob[3].toString());
+        salesDTO.setSellingPrice(ob[4].toString());
+        return salesDTO;
+    }
+
     @ResponseBody
     private List<DataPoint> constructDataPoints(List<Report1> reportList, String item, String[] monthAr, int i) {
         List<DataPoint> dataPoints = new ArrayList<DataPoint>();
@@ -186,7 +215,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         }
         return dataPoints;
     }
-    
+
     public List<Report1> getReportList(String item, List<Report1> reportList) {
         List<Report1> list = new ArrayList<Report1>();
 
@@ -199,7 +228,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
 
         return list;
     }
-    
+
     @Override
     public ReportDataSet getReports(String items, String months, String year) {
         List<Report1DataSet> report1 = readDataForAreaChart(items, months, year);

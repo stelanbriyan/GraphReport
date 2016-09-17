@@ -5,6 +5,7 @@
  */
 
 
+var table = null;
 $(function () {
     $.ajax({
         type: "GET",
@@ -63,7 +64,7 @@ $(function () {
             data: JSON.stringify(jsonData),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                loadAreaChart(data.report_1);
+                loadAreaChart(data);
                 loadPieChart(data.report_2);
                 loadBarChart(data.report_3);
                 loadColumnChart(data.report_4);
@@ -74,9 +75,51 @@ $(function () {
             }
         });
     });
+
+    table = $('#table-id').DataTable({
+        pagingType: "full_numbers",
+        columnDefs: [{
+                "targets": [0, 4],
+                "searchable": true
+            }]
+    });
 });
 
 function loadAreaChart(json) {
+
+    var chart1Data = [];
+
+    for (var i = 0; i < json.report_1.length; i++) {
+        var x = {
+            type: "stackedArea",
+            name: json.report_1[i].name,
+            showInLegend: "true",
+            dataPoints: json.report_1[i].dataPoints,
+            cursor: "pointer",
+            click: function (e) {
+                var inputData = {
+                    "item": e.dataSeries.name,
+                    "month": e.dataPoint.label
+                };
+                var year = $('#yearList').val();
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "v1/web/sales/" + year + "/read",
+                    data: JSON.stringify(inputData),
+                    dataType: 'json',
+                    success: function (jsonData, textStatus, jqXHR) {
+                        loadItemTable(e, jsonData);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            }
+        };
+        chart1Data.push(x);
+    }
+
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         title: {
             text: "",
@@ -97,7 +140,7 @@ function loadAreaChart(json) {
             verticalAlign: "bottom",
             horizontalAlign: "center"
         },
-        data: json,
+        data: chart1Data,
         legend: {
             cursor: "pointer",
             itemclick: function (e) {
@@ -212,4 +255,26 @@ function loadLineChart(json) {
 
 function hideAllChart() {
     $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
+}
+
+function loadItemTable(e, json) {
+    $('#type-name-item').text(e.dataPoint.indexLabel);
+    $('#amount-item').text(e.dataPoint.y + " LKR");
+
+    table.clear();
+    for (var i = 0; i < json.length; i++) {
+        var rowData = [];
+        rowData.push(json[i].ref_no);
+        rowData.push(json[i].txn_date);
+        rowData.push(json[i].type_name);
+        rowData.push(json[i].qty);
+        rowData.push(json[i].selling_price);
+        table.row.add(rowData);
+    }
+    table.draw();
+
+    $('.item-table').show();
+    $("html, body").animate({
+        scrollTop: $('#item-detail-info').offset().top - 50
+    }, 1000);
 }

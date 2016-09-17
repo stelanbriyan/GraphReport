@@ -9,7 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
@@ -19,6 +18,9 @@
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
         <script src="JS/itemReport.js" type="text/javascript"></script>
+        
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>GRAPH REPORT</title>
     </head>
     <body>

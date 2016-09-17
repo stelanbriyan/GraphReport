@@ -6,6 +6,7 @@
 package com.biz.report.controller;
 
 import com.biz.report.dto.ReportDataSet;
+import com.biz.report.dto.SalesDTO;
 import com.biz.report.service.ItemDashBoardService;
 import java.util.List;
 import java.util.Map;
@@ -59,5 +60,17 @@ public class ItemDashBoardController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "sales/{year}/read", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    public ResponseEntity<List<SalesDTO>> readItemByType(@RequestBody Map map, @PathVariable("year")String year) {
+        Assert.notNull(year, "Year is null.");
+        Assert.notNull(map, "Type is null.");
+        String itemName = map.get("item").toString();
+        String month = map.get("month") != null ? map.get("month").toString() : null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<SalesDTO>>(itemDashBoardService.readByItemName(itemName, year, month), headers, HttpStatus.OK);
     }
 }

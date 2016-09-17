@@ -31,5 +31,7 @@ public interface ItemDashBoardService {
     
     public List<Report5DataSet> readDataForLineChart(String items, String months, String year);
     
+    List readByItemName(String itemName, String year, String month);
+    
     public ReportDataSet getReports(String items, String months, String year);
 }
