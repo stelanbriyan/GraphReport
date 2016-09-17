@@ -60,5 +60,10 @@ public class RepReportDaoImpl implements RepReportDao {
                 + "GROUP BY a.RepName");
         return sQLQuery.list();
     }
+    
+    
+    public void readByRepName(String reps , String year, String months){
+        String sql = "";
+    }
 
 }

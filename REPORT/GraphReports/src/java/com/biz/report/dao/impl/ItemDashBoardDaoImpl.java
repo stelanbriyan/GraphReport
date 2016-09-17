@@ -64,4 +64,29 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
         return sQLQuery.list();
     }
 
+    public List readByItemName(String itemName , String year, String month){
+        List list = null;
+        Session session = getSession();
+        if(month == null){
+            String sql = "SELECT c.RefNo, c.txnDate , b.TypeName , c.Qty , c.sellPrice "
+                    + "FROM fitems a , FType b , FInvdet c  "
+                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                    + "AND YEAR(c.txnDate) =  " + year + " "
+                    + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
+                    + "AND a.ItemName = " + itemName ;
+            Query query = session.createSQLQuery(sql);
+            list = query.list();
+        }else{
+            String sql = "SELECT c.RefNo, c.txnDate , b.TypeName , c.Qty , c.sellPrice "
+                    + "FROM fitems a , FType b , FInvdet c  "
+                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                    + "AND YEAR(c.txnDate) =  " + year + " "
+                    + "AND DATENAME(MONTH, c.txnDate) = " + month + " "
+                    + "AND a.ItemName = " + itemName ;
+            Query query = session.createSQLQuery(sql);
+            list = query.list();
+        }        
+        return list;       
+    }
+    
 }
