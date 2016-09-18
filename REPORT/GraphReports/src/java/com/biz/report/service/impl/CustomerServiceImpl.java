@@ -78,7 +78,10 @@ public class CustomerServiceImpl implements CustomerService {
         if (!StringUtils.isEmpty(customers) && customers.contains("[")) {
             customers = customers.substring(1, customers.length() - 1);
         }
-        List list = customerReportDao.readByMonth(customers, year, months);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = customerReportDao.readByMonth(customers, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report2DataSet> dataSets = new ArrayList<Report2DataSet>();
         for (Report2 r : reportList) {
@@ -91,7 +94,10 @@ public class CustomerServiceImpl implements CustomerService {
         if (!StringUtils.isEmpty(customers) && customers.contains("[")) {
             customers = customers.substring(1, customers.length() - 1);
         }
-        List list = customerReportDao.readByMonth(customers, year, months);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = customerReportDao.readByMonth(customers, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {

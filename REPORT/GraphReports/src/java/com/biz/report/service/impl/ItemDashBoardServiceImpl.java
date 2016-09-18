@@ -75,11 +75,14 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     }
 
     @Override
-    public List<Report2DataSet> readDataForPieChart(String items, String year, String month) {
+    public List<Report2DataSet> readDataForPieChart(String items, String year, String months) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
         }
-        List list = itemDashBoardDao.readByMonth(items, year, month);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = itemDashBoardDao.readByMonth(items, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report2DataSet> dataSets = new ArrayList<Report2DataSet>();
         for (Report2 r : reportList) {
@@ -88,11 +91,14 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         return dataSets;
     }
 
-    public List<Report3DataSet> readDataForBarChart(String items, String year, String month) {
+    public List<Report3DataSet> readDataForBarChart(String items, String year, String months) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
         }
-        List list = itemDashBoardDao.readByMonth(items, year, month);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = itemDashBoardDao.readByMonth(items, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {
