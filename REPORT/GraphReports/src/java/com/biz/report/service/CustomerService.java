@@ -24,9 +24,9 @@ public interface CustomerService {
     
     List<Report1DataSet> readDataForAreaChart(String customers, String months, String year);
     
-    public List<Report2DataSet> readDataForPieChart(String customers, String year);
+    public List<Report2DataSet> readDataForPieChart(String customers, String year, String months);
     
-    public List<Report3DataSet> readDataForBarChart(String customers, String year);
+    public List<Report3DataSet> readDataForBarChart(String customers, String year, String months);
     
     public List<Report4DataSet> readDataForColumnChart(String customers, String months, String year);
     

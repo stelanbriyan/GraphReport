@@ -74,11 +74,11 @@ public class CustomerServiceImpl implements CustomerService {
         return dataSets;
     }
 
-    public List<Report2DataSet> readDataForPieChart(String customers, String year) {
+    public List<Report2DataSet> readDataForPieChart(String customers, String year, String months) {
         if (!StringUtils.isEmpty(customers) && customers.contains("[")) {
             customers = customers.substring(1, customers.length() - 1);
         }
-        List list = customerReportDao.read(customers, year);
+        List list = customerReportDao.readByMonth(customers, year, months);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report2DataSet> dataSets = new ArrayList<Report2DataSet>();
         for (Report2 r : reportList) {
@@ -87,11 +87,11 @@ public class CustomerServiceImpl implements CustomerService {
         return dataSets;
     }
 
-    public List<Report3DataSet> readDataForBarChart(String customers, String year) {
+    public List<Report3DataSet> readDataForBarChart(String customers, String year, String months) {
         if (!StringUtils.isEmpty(customers) && customers.contains("[")) {
             customers = customers.substring(1, customers.length() - 1);
         }
-        List list = customerReportDao.read(customers, year);
+        List list = customerReportDao.readByMonth(customers, year, months);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {
@@ -192,17 +192,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     public ReportDataSet getReports(String customers, String months, String year) {
         List<Report1DataSet> report1 = readDataForAreaChart(customers, months, year);
-        List<Report2DataSet> report2 = readDataForPieChart(customers, year);
-        List<Report3DataSet> report3 = readDataForBarChart(customers, year);
+        List<Report2DataSet> report2 = readDataForPieChart(customers, year, months);
+        List<Report3DataSet> report3 = readDataForBarChart(customers, year, months);
         List<Report4DataSet> report4 = readDataForColumnChart(customers, months, year);
         List<Report5DataSet> report5 = readDataForLineChart(customers, months, year);
-        ReportDataSet reportDataSet = new ReportDataSet();
-        reportDataSet.setReport1(report1);
-        reportDataSet.setReport2(report2);
-        reportDataSet.setReport3(report3);
-        reportDataSet.setReport4(report4);
-        reportDataSet.setReport5(report5);
-        return reportDataSet;
+        return new ReportDataSet(report1, report2, report3, report4, report5);
     }
     
     @ResponseBody

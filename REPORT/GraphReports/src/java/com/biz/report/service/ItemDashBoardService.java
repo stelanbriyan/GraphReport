@@ -23,9 +23,9 @@ public interface ItemDashBoardService {
     
     List<Report1DataSet> readDataForAreaChart(String items, String months, String year);
     
-    public List<Report2DataSet> readDataForPieChart(String items, String year);
+    public List<Report2DataSet> readDataForPieChart(String items, String year, String month);
     
-    public List<Report3DataSet> readDataForBarChart(String items, String year);
+    public List<Report3DataSet> readDataForBarChart(String items, String year, String month);
     
     public List<Report4DataSet> readDataForColumnChart(String items, String months, String year);
     

@@ -75,11 +75,11 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     }
 
     @Override
-    public List<Report2DataSet> readDataForPieChart(String items, String year) {
+    public List<Report2DataSet> readDataForPieChart(String items, String year, String month) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
         }
-        List list = itemDashBoardDao.read(items, year);
+        List list = itemDashBoardDao.readByMonth(items, year, month);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report2DataSet> dataSets = new ArrayList<Report2DataSet>();
         for (Report2 r : reportList) {
@@ -88,11 +88,11 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         return dataSets;
     }
 
-    public List<Report3DataSet> readDataForBarChart(String items, String year) {
+    public List<Report3DataSet> readDataForBarChart(String items, String year, String month) {
         if (!StringUtils.isEmpty(items) && items.contains("[")) {
             items = items.substring(1, items.length() - 1);
         }
-        List list = itemDashBoardDao.read(items, year);
+        List list = itemDashBoardDao.readByMonth(items, year, month);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {
@@ -232,16 +232,10 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     @Override
     public ReportDataSet getReports(String items, String months, String year) {
         List<Report1DataSet> report1 = readDataForAreaChart(items, months, year);
-        List<Report2DataSet> report2 = readDataForPieChart(items, year);
-        List<Report3DataSet> report3 = readDataForBarChart(items, year);
+        List<Report2DataSet> report2 = readDataForPieChart(items, year, months);
+        List<Report3DataSet> report3 = readDataForBarChart(items, year, months);
         List<Report4DataSet> report4 = readDataForColumnChart(items, months, year);
         List<Report5DataSet> report5 = readDataForLineChart(items, months, year);
-        ReportDataSet reportDataSet = new ReportDataSet();
-        reportDataSet.setReport1(report1);
-        reportDataSet.setReport2(report2);
-        reportDataSet.setReport3(report3);
-        reportDataSet.setReport4(report4);
-        reportDataSet.setReport5(report5);
-        return reportDataSet;
+        return new ReportDataSet(report1, report2, report3, report4, report5);
     }
 }
