@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
@@ -19,6 +19,8 @@
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
         <script src="JS/custReport.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>CUSTOMER DASHBOARD</title>
     </head>
     <body>
@@ -146,11 +148,55 @@
             </div>
         </div>
 
-        <br/>
-        <br/>
-        <div class="bottom_of_report">
-            <center>GRAPH SALES REPORT @ 2016  </center>
-        </div>
+        <div class="item-table">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="item-detail" id="item-detail-info">
+                        <br/>
+                        <br/>
+                        <!--                            <table style="width: 400px">
+                                                        <tr>
+                                                            <td>
+                                                                <div style="background-color: #fafcfe;padding: 10px;border-left: 4px solid #269abc;">
+                                                                    <dt>Type Name</dt>
+                                                                    <dd style="font-size: 20px;" id="type-name-item"></dd>
+                                                                </div>
+                                                                </dl>
+                                                            </td>
+                                                            <td>
+                                                                <div style="background-color: #fafcfe;padding: 10px;margin-left: 5px;border-left: 4px solid #269abc;">
+                                                                    <dt>Total Selling Price</dt>
+                                                                    <dd style="font-size: 20px;" id="amount-item"></dd>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>-->
+                        <br/>
+                        <table id="table-id" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>INVOICE NO</th>
+                                    <th>DATE</th>
+                                    <th>TYPE NAME</th>
+                                    <th>QTY</th>
+                                    <th>SELLING PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
 
-    </body>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <div class="bottom_of_report">
+        <center>GRAPH SALES REPORT @ 2016  </center>
+    </div>
+
+</body>
 </html>

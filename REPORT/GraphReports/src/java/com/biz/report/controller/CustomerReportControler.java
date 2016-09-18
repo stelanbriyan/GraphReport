@@ -5,6 +5,7 @@
  */
 package com.biz.report.controller;
 
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.CustomerService;
 import java.util.List;
@@ -57,5 +58,17 @@ public class CustomerReportControler {
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<List<String>>(customerService.readCustomers(), headers, HttpStatus.OK);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "customers/items/{year}/read", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    public ResponseEntity<List<ItemDTO>> readItemByType(@RequestBody Map map, @PathVariable("year")String year) {
+        Assert.notNull(year, "Year is null.");
+        Assert.notNull(map, "Type is null.");
+        String customers = map.get("customers").toString();
+        String month = map.get("month") != null ? map.get("month").toString() : null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<ItemDTO>>(customerService.readByCustomerName(customers, year, month), headers, HttpStatus.OK);
     }
 }

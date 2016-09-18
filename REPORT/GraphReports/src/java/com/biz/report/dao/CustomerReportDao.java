@@ -19,5 +19,5 @@ public interface CustomerReportDao {
     
     List read(String customers, String year);
     
-    public List readTableData(String customers, String year, String months);
+    List readTableData(String customers, String year, String months);
 }
