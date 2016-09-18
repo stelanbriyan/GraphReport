@@ -189,8 +189,8 @@ public class CustomerServiceImpl implements CustomerService {
         Object[] obAr = (Object[]) ob;
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setInvoiceNo(obAr[0].toString());
-        itemDTO.setItemName(obAr[1].toString());
-        itemDTO.setDate(obAr[2].toString().substring(0, 10));
+        itemDTO.setDate(obAr[1].toString().substring(0, 10));
+        itemDTO.setItemName(obAr[2].toString());
         itemDTO.setQty(obAr[3].toString());
         itemDTO.setSellingPrice(obAr[4].toString());
         return itemDTO;
