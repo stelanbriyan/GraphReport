@@ -4,8 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/impl/ReportDaoImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/impl/CustomerReportDaoImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/RES/JS/itemReport.js</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/service/impl/CustomerServiceImpl.java</file>
             <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/index.jsp</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/RES/JS/custReport.js</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/service/impl/ReportServiceImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/RES/JS/repReport.js</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/WEB/rep_report.jsp</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/impl/ItemDashBoardDaoImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/WEB/customer-dashboard.jsp</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/WEB/item_report.jsp</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/service/impl/RepReportServiceImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/RepReportDao.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/ItemDashBoardDao.java</file>
             <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/impl/RepReportDaoImpl.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/com/biz/report/dao/CustomerReportDao.java</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/RES/JS/script.js</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/web/WEB-INF/RES/CSS/style.css</file>
+            <file>file:/G:/BUSINESS%20SOLUTIONS/GraphReport-Git-Vr2.0/REPORT/GraphReports/src/java/application.properties</file>
         </group>
     </open-files>
 </project-private>
