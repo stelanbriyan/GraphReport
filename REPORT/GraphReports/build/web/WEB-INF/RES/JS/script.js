@@ -202,7 +202,7 @@ function loadChart(json) {
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
-                        loadItemTable(e, jsonData);
+                        loadItemTable2(e, jsonData);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(errorThrown);
@@ -269,7 +269,7 @@ function loadChart(json) {
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
-                        loadItemTable(e, jsonData);
+                        loadItemTable2(e, jsonData);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(errorThrown);
@@ -320,7 +320,7 @@ function loadChart(json) {
                     data: JSON.stringify(inputData),
                     dataType: 'json',
                     success: function (jsonData, textStatus, jqXHR) {
-                        loadItemTable(e, jsonData);
+                        loadItemTable2(e, jsonData);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(errorThrown);
@@ -371,6 +371,28 @@ function loadChart(json) {
 
 function loadItemTable(e, json) {
     $('#type-name-item').text(e.dataPoint.indexLabel);
+    $('#amount-item').text(e.dataPoint.y + " LKR");
+
+    table.clear();
+    for (var i = 0; i < json.length; i++) {
+        var rowData = [];
+        rowData.push(json[i].invoice_no);
+        rowData.push(json[i].date);
+        rowData.push(json[i].item_name);
+        rowData.push(json[i].qty);
+        rowData.push(json[i].selling_price);
+        table.row.add(rowData);
+    }
+    table.draw();
+
+    $('.item-table').show();
+    $("html, body").animate({
+        scrollTop: $('#item-detail-info').offset().top - 50
+    }, 1000);
+}
+
+function loadItemTable2(e, json) {
+    $('#type-name-item').text(e.dataSeries.name);
     $('#amount-item').text(e.dataPoint.y + " LKR");
 
     table.clear();
