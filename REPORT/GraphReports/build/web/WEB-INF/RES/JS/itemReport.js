@@ -24,6 +24,22 @@ $(function () {
             console.log(errorThrown);
         }
     });
+    $.ajax({
+        type: "POST",
+        url: "v1/web/years",
+        success: function (data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) {
+                $('#yearList').append('<option value="' + data[i] + '">' + data[i] + '</option>');
+            }
+            $('#yearList').selectpicker({
+                style: 'btn-info',
+                size: 12
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
 
 
     $('.selectpicker').selectpicker({

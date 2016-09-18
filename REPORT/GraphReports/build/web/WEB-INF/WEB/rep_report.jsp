@@ -55,8 +55,7 @@
                                 <option value="'November'" selected>November</option>
                                 <option value="'December'" selected>December</option>
                             </select>
-                            <select class="selectpicker" id="yearList" multiple>
-                                <option selected>2016</option>
+                            <select class="selectpicker2" id="yearList" >
                             </select>
                             <select class="selectpicker" id="chart-type">
                                 <option selected>Area Chart</option>
