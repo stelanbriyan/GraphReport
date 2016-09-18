@@ -235,6 +235,7 @@ function loadBarChart(json) {
                     }
                 ]
             });
+    chart3.render();
 }
 function hideAllChart() {
     $('#area-chart, #pie-chart, #bar-chart, #column-chart, #line-chart').hide();
@@ -252,7 +253,7 @@ function loadColumnChart(json) {
             click: function (e) {
                 var inputData = {
                     "reps": e.dataSeries.name,
-                    "month" : e.dataPoint.label
+                    "month": e.dataPoint.label
                 };
                 var year = $('#yearList').val();
                 $.ajax({
@@ -305,7 +306,7 @@ function loadLineChart(json) {
             click: function (e) {
                 var inputData = {
                     "reps": e.dataSeries.name,
-                    "month" : e.dataPoint.label
+                    "month": e.dataPoint.label
                 };
                 var year = $('#yearList').val();
                 $.ajax({

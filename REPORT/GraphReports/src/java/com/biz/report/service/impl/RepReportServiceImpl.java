@@ -74,11 +74,14 @@ public class RepReportServiceImpl implements RepReportService {
         return dataSets;
     }
 
-    public List<Report2DataSet> readDataForPieChart(String reps, String year) {
+    public List<Report2DataSet> readDataForPieChart(String reps, String year, String months) {
         if (!StringUtils.isEmpty(reps) && reps.contains("[")) {
             reps = reps.substring(1, reps.length() - 1);
         }
-        List list = repReportDao.read(reps, year);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = repReportDao.readByMonth(reps, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report2DataSet> dataSets = new ArrayList<Report2DataSet>();
         for (Report2 r : reportList) {
@@ -87,11 +90,14 @@ public class RepReportServiceImpl implements RepReportService {
         return dataSets;
     }
 
-    public List<Report3DataSet> readDataForBarChart(String reps, String year) {
+    public List<Report3DataSet> readDataForBarChart(String reps, String year, String months) {
         if (!StringUtils.isEmpty(reps) && reps.contains("[")) {
             reps = reps.substring(1, reps.length() - 1);
         }
-        List list = repReportDao.read(reps, year);
+        if (!StringUtils.isEmpty(months) && months.contains("[")) {
+            months = months.substring(1, months.length() - 1);
+        }
+        List list = repReportDao.readByMonth(reps, months, year);
         List<Report2> reportList = new MappingEngine().getPieChartReport(list);
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {
@@ -192,8 +198,8 @@ public class RepReportServiceImpl implements RepReportService {
 
     public ReportDataSet getReports(String reps, String months, String year) {
         List<Report1DataSet> report1 = readDataForAreaChart(reps, months, year);
-        List<Report2DataSet> report2 = readDataForPieChart(reps, year);
-        List<Report3DataSet> report3 = readDataForBarChart(reps, year);
+        List<Report2DataSet> report2 = readDataForPieChart(reps, year, months);
+        List<Report3DataSet> report3 = readDataForBarChart(reps, year, months);
         List<Report4DataSet> report4 = readDataForColumnChart(reps, months, year);
         List<Report5DataSet> report5 = readDataForLineChart(reps, months, year);
         ReportDataSet reportDataSet = new ReportDataSet();

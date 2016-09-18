@@ -24,9 +24,9 @@ public interface RepReportService {
     
     List<Report1DataSet> readDataForAreaChart(String reps, String months, String year);
     
-    public List<Report2DataSet> readDataForPieChart(String reps, String year);
+    public List<Report2DataSet> readDataForPieChart(String reps, String year, String months);
     
-    public List<Report3DataSet> readDataForBarChart(String reps, String year);
+    public List<Report3DataSet> readDataForBarChart(String reps, String year, String months);
     
     public List<Report4DataSet> readDataForColumnChart(String reps, String months, String year);
     
