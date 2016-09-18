@@ -40,7 +40,17 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     private Log logger = LogFactory.getLog(ItemDashBoardServiceImpl.class);
 
     public List<String> readItems() {
-        return itemDashBoardDao.readItems();
+        List<String> readItems = itemDashBoardDao.readItems();
+        List<String> newItemsList = new ArrayList<String>();
+        for (String s : readItems) {
+            if (s != null) {
+                if (s.length() > 50) {
+                    s = s.substring(0, 50);
+                }
+                newItemsList.add(s.trim());
+            }
+        }
+        return newItemsList;
     }
 
     public List<Report1DataSet> readDataForAreaChart(String items, String months, String year) {

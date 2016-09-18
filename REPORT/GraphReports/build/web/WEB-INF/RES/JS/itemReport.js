@@ -14,7 +14,7 @@ $(function () {
         success: function (data, textStatus, jqXHR) {
             for (var property in data) {
                 var value = "'" + data[property] + "'";
-                $('#list').append('<option value="' + "'" + data[property].trim() + "'" + '">' + data[property] + "</option>");
+                $('#list').append('<option value="' + "'" + data[property].trim() + "'" + '">' + data[property].trim() + "</option>");
             }
             $('#list').selectpicker({
                 style: 'btn-info',

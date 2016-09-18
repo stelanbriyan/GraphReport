@@ -13,7 +13,7 @@ $(function () {
         success: function (data, textStatus, jqXHR) {
             for (var property in data) {
                 var value = "'" + data[property] + "'";
-                $('#typelist').append('<option value="' + "'" + data[property].trim() + "'" + '">' + data[property] + "</option>");
+                $('#typelist').append('<option value="' + "'" + data[property].trim() + "'" + '">' + data[property].trim() + "</option>");
 //                alert(data[property]);
             }
             $('#typelist').selectpicker({
