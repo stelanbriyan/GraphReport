@@ -51,13 +51,14 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
         return sQLQuery.list();
     }
 
-    public List read(String customers, String year) {
+    public List readByMonth(String customers, String months, String year) {
         Session session = getSession();
         String sql = "SELECT  a.DebName , sum(c.SellPrice) "
                 + "FROM CASSIMS.dbo.fDebtor a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
                 + "WHERE a.DebCode = b.DebCode AND b.RefNo = c.RefNo "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.DebName IN (" + customers + ") "
+                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.DebName";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();

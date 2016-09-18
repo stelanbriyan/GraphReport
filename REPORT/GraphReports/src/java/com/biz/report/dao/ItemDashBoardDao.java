@@ -12,12 +12,12 @@ import java.util.List;
  * @author Aux-058
  */
 public interface ItemDashBoardDao {
-    
+
     List readItems();
-    
+
     List read(String items, String months, String year);
-    
-    List read(String items, String year);
-    
+
+    public List readByMonth(String items, String months, String year);
+
     List readByItemName(String itemName, String year, String month);
 }

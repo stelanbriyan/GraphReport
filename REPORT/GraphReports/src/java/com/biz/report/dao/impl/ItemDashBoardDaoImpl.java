@@ -52,14 +52,14 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
         return sQLQuery.list();
     }
 
-    public List read(String items, String year) {
+    public List readByMonth(String items, String months, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.ItemName , sum(b.SellPrice) "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.ItemName IN (" + items + ") "
-                //                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
+                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.ItemName ");
         return sQLQuery.list();
     }
