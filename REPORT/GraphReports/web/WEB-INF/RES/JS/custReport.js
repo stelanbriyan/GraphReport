@@ -6,6 +6,7 @@
 
 var table = null;
 $(function () {
+    $('.item-table').hide();
     $.ajax({
         type: "GET",
         url: "v1/web/customers",
