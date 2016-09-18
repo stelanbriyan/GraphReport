@@ -63,4 +63,17 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
         return sQLQuery.list();
     }
 
+    
+    public List readTableData(String customers, String year, String months) {
+        Session session = getSession();
+        String sql = "SELECT a.RefNo , b.TxnDate, d.ItemName , b.Qty , b.SellPrice "
+                + "FROM CASSIMS.dbo.fInvhed a, CASSIMS.dbo.fInvdet b, CASSIMS.dbo.fDebtor c, CASSIMS.dbo.fitems d "
+                + "WHERE a.RefNo = b.RefNo AND a.DebCode = c.DebCode AND b.Itemcode = d.ItemCode "
+                + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
+                + "AND YEAR(b.TxnDate) = " + year + " "
+                + "AND c.DebName = " + customers;
+        Query sQLQuery = session.createSQLQuery(sql);
+        return sQLQuery.list();
+    }
+
 }
