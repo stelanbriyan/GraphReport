@@ -33,8 +33,7 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
     public List readItems() {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT a.ItemName FROM CASSIMS.dbo.fitems a , CASSIMS.dbo.fInvdet b "
-                + "WHERE a.ItemCode = b.Itemcode "
+        Query sQLQuery = session.createSQLQuery("SELECT a.ItemName FROM CASSIMS.dbo.fitems a "
                 + "GROUP BY a.ItemName");
 
         return sQLQuery.list();

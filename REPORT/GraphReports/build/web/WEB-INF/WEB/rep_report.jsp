@@ -38,7 +38,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <select class="selectpicker1" id="list" multiple>
+                            <select class="selectpicker1" id="list" multiple multiple data-live-search="true">
 
                             </select>
                             <select class="selectpicker" id="monthList" multiple>
