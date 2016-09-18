@@ -50,13 +50,14 @@ public class RepReportDaoImpl implements RepReportDao {
         return sQLQuery.list();
     }
 
-    public List read(String reps, String year) {
+    public List readByMonth(String reps, String months, String year ) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.RepName , sum(c.SellPrice) "
                 + "FROM CASSIMS.dbo.fSalRep a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
                 + "WHERE a.RepCode = b.RepCode AND b.RefNo = c.RefNo "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.RepName IN (" + reps + ") "
+                + "AND DATENAME(MONTH, c.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.RepName");
         return sQLQuery.list();
     }

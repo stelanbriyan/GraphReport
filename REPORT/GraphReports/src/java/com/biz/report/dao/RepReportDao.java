@@ -12,12 +12,12 @@ import java.util.List;
  * @author Aux-058
  */
 public interface RepReportDao {
-    
+
     List readReps();
-    
+
     List read(String reps, String months, String year);
-    
-    List read(String reps, String year);
-    
+
+    public List readByMonth(String reps, String months, String year);
+
     public List readByRepName(String reps, String year, String months);
 }
