@@ -5,6 +5,7 @@
  */
 package com.biz.report.service;
 
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
@@ -30,6 +31,8 @@ public interface RepReportService {
     public List<Report4DataSet> readDataForColumnChart(String reps, String months, String year);
     
     public List<Report5DataSet> readDataForLineChart(String reps, String months, String year);
+    
+    public List<ItemDTO> readByRepName(String reps, String year, String months);
     
     public ReportDataSet getReports(String reps, String months, String year);
 }

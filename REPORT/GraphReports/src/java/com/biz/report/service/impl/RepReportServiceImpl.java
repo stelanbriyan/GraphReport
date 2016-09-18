@@ -10,6 +10,7 @@ import com.biz.report.domain.MappingEngine;
 import com.biz.report.domain.Report1;
 import com.biz.report.domain.Report2;
 import com.biz.report.dto.DataPoint;
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.Report1DataSet;
 import com.biz.report.dto.Report2DataSet;
 import com.biz.report.dto.Report3DataSet;
@@ -159,6 +160,34 @@ public class RepReportServiceImpl implements RepReportService {
             dataSets.add(new Report5DataSet(dataPoints, typeAr[i]));
         }
         return dataSets;
+    }
+    
+    @Override
+    public List<ItemDTO> readByRepName(String reps, String year, String month) {
+        if (!StringUtils.isEmpty(month) && month.contains("[")) {
+            month = month.substring(1, month.length() - 1);
+        }
+        if (!StringUtils.isEmpty(reps) && !reps.contains("'")) {
+            reps = "'" + reps + "'";
+        }
+        List list = repReportDao.readByRepName(reps, year, month);
+        List<ItemDTO> itemDTOs = new ArrayList<ItemDTO>();
+        for (Object object : list) {
+            ItemDTO itemDTO = constructItemDTO(object);
+            itemDTOs.add(itemDTO);
+        }
+        return itemDTOs;
+    }
+
+    private ItemDTO constructItemDTO(Object ob) {
+        Object[] obAr = (Object[]) ob;
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setInvoiceNo(obAr[0].toString());
+        itemDTO.setItemName(obAr[1].toString());
+        itemDTO.setDate(obAr[2].toString().substring(0, 10));
+        itemDTO.setQty(obAr[3].toString());
+        itemDTO.setSellingPrice(obAr[4].toString());
+        return itemDTO;
     }
 
     public ReportDataSet getReports(String reps, String months, String year) {

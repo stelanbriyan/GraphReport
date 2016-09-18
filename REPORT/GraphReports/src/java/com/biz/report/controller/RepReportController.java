@@ -5,6 +5,7 @@
  */
 package com.biz.report.controller;
 
+import com.biz.report.dto.ItemDTO;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.RepReportService;
 import java.util.List;
@@ -52,11 +53,23 @@ public class RepReportController {
         logger.info(data);
         Assert.notNull(data, "Data is null.");
         Assert.notNull(year, "Year is null.");
-        String items = data.get("reps").toString();
+        String reps = data.get("reps").toString();
         String months = data.get("months").toString();
-        ReportDataSet reportDataSet = repReportService.getReports(items, months, year);
+        ReportDataSet reportDataSet = repReportService.getReports(reps, months, year);
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
         return new ResponseEntity<ReportDataSet>(reportDataSet, headers, HttpStatus.OK);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "reps/items/{year}/read", method = RequestMethod.POST, headers = {"Content-type=application/json"})
+    public ResponseEntity<List<ItemDTO>> readItemByType(@RequestBody Map map, @PathVariable("year")String year) {
+        Assert.notNull(year, "Year is null.");
+        Assert.notNull(map, "Type is null.");
+        String reps = map.get("reps").toString();
+        String month = map.get("month") != null ? map.get("month").toString() : null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("success", "Success");
+        return new ResponseEntity<List<ItemDTO>>(repReportService.readByRepName(reps, year, month), headers, HttpStatus.OK);
     }
 }

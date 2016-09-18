@@ -18,4 +18,6 @@ public interface RepReportDao {
     List read(String reps, String months, String year);
     
     List read(String reps, String year);
+    
+    public List readByRepName(String reps, String year, String months);
 }
