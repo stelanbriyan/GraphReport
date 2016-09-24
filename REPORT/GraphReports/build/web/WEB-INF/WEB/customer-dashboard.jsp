@@ -168,9 +168,14 @@
                                         <dd style="font-size: 20px;" id="amount-item"></dd>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="excel-btn-div" onclick="downloadCSV({ filename: 'stock-data.csv' });">
+                                <td style="width: 70px">
+                                    <div class="excel-btn-div" onclick="downloadCSV({filename: 'stock-data.csv'});">
                                         <img class="excel-btn" src="IMG/exel.png" alt=""/>
+                                    </div>
+                                </td>
+                                <td style="width: 70px">
+                                    <div class="excel-btn-div">
+                                        <img class="excel-btn" src="IMG/exel_1.png" alt=""/>
                                     </div>
                                 </td>
                             </tr>

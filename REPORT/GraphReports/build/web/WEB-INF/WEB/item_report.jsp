@@ -18,7 +18,7 @@
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
         <script src="JS/canvasjs.min.js" type="text/javascript"></script>
         <script src="JS/itemReport.js" type="text/javascript"></script>
-        
+
         <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>GRAPH REPORT</title>
@@ -145,8 +145,8 @@
                 <br/>
                 <br/>
             </div>
-            
-            
+
+
             <div class="item-table">
                 <div class="row">
                     <div class="col-md-12">
@@ -168,9 +168,14 @@
                                             <dd style="font-size: 20px;" id="amount-item"></dd>
                                         </div>
                                     </td>
-                                     <td>
-                                        <div class="excel-btn-div" onclick="downloadCSV({ filename: 'stock-data.csv' });">
+                                    <td style="width: 70px">
+                                        <div class="excel-btn-div" onclick="downloadCSV({filename: 'stock-data.csv'});">
                                             <img class="excel-btn" src="IMG/exel.png" alt=""/>
+                                        </div>
+                                    </td>
+                                    <td style="width: 70px">
+                                        <div class="excel-btn-div">
+                                            <img class="excel-btn" src="IMG/exel_1.png" alt=""/>
                                         </div>
                                     </td>
                                 </tr>
@@ -195,7 +200,7 @@
                 </div>
             </div>
         </div>
-        
+
         <br/>
         <br/>
         <div class="bottom_of_report">

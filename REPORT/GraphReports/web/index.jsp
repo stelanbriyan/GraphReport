@@ -170,7 +170,7 @@
                         <div class="item-detail" id="item-detail-info">
                             <br/>
                             <br/>
-                            <table style="width: 400px">
+                            <table style="width: 600px">
                                 <tr>
                                     <td>
                                         <div style="background-color: #fafcfe;padding: 10px;border-left: 4px solid #269abc;">
@@ -185,9 +185,14 @@
                                             <dd style="font-size: 20px;" id="amount-item"></dd>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td style="width: 70px">
                                         <div class="excel-btn-div" onclick="downloadCSV({ filename: 'stock-data.csv' });">
                                             <img class="excel-btn" src="IMG/exel.png" alt=""/>
+                                        </div>
+                                    </td>
+                                     <td style="width: 70px">
+                                        <div class="excel-btn-div">
+                                            <img class="excel-btn" src="IMG/exel_1.png" alt=""/>
                                         </div>
                                     </td>
                                 </tr>
