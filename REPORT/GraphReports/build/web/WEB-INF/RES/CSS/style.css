@@ -8,9 +8,20 @@ and open the template in the editor.
     Author     : Stelan Briyan
 */
 
+.excel-btn-div{
+    background-color: #fafcfe;
+    height: auto;
+    width: 70px;
+    margin-left: 5px;border-left: 4px solid #269abc;
+}
+
+.excel-btn-div:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+}
 .top-br{
     background-color: #245269;
-    
+
 }
 
 .btn-top{
@@ -40,8 +51,8 @@ and open the template in the editor.
 
 body{
     background-color: #fafcfe;
-/*    padding-left: 50px;
-    padding-right:  50px;*/
+    /*    padding-left: 50px;
+        padding-right:  50px;*/
     padding-top: 20px;
     overflow-x: hidden;
 }

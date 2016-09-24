@@ -168,6 +168,11 @@
                                             <dd style="font-size: 20px;" id="amount-item"></dd>
                                         </div>
                                     </td>
+                                     <td>
+                                        <div class="excel-btn-div">
+                                            <img class="excel-btn" src="IMG/exel.png" alt=""/>
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
                             <br/>
