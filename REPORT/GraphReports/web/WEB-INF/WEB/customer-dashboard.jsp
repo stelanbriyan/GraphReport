@@ -153,7 +153,7 @@
                     <div class="item-detail" id="item-detail-info">
                         <br/>
                         <br/>
-                        <table style="width: 500px">
+                        <table style="width: 700px">
                             <tr>
                                 <td>
                                     <div style="background-color: #fafcfe;padding: 10px;border-left: 4px solid #269abc;">
