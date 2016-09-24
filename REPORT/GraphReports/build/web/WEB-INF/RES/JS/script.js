@@ -471,3 +471,31 @@ function downloadCSV(args) {
     link.setAttribute('download', filename);
     link.click();
 }
+
+function printData()
+{
+    var mywindow = window.open('', '');
+    mywindow.document.write('<html><head><title>Category Report - Print</title>');
+//    mywindow.document.write('<link rel="stylesheet" href="WEB-INF/RES/CSS/bootstrap.min.css" type="text/css" />');
+    mywindow.document.write('</head><body>');
+    mywindow.document.write('<table border="1" width="100%"><thead><tr><th style="padding-right:6px;">INVOICE NO</th><th style="padding-right:6px;">DATE</th><th style="padding-right:6px;">ITEM NAME</th><th style="padding-right:6px;">QTY</th><th style="padding-right:6px;">SELLING PRICE</th></tr></thead><tbody>');
+    for (var i = 0; i < tableData.length; i++) {
+        mywindow.document.write('<tr>');
+        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].invoice_no + '</td>');
+        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].date + '</td>');
+        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].item_name + '</td>');
+        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].qty + '</td>');
+        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].selling_price + '</td>');
+        mywindow.document.write('</tr>');
+    }
+    mywindow.document.write('</tbody>');
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}

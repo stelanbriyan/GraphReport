@@ -10,19 +10,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        
+
         <script src="JS/REMOTE/jquery-3.1.0.js" type="text/javascript"></script>
-         <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
-        
+        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>-->
+
         <!--<link href="CSS/REMOTE/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
-        
+
         <script src="JS/REMOTE/bootstrap.min.js" type="text/javascript"></script>
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>-->
-        
+
         <link href="CSS/REMOTE/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">-->
-        
+
         <script src="JS/REMOTE/bootstrap-select.min.js" type="text/javascript"></script>
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>-->
 
@@ -32,7 +32,7 @@
 
         <script src="JS/REMOTE/jquery.dataTables.min.js" type="text/javascript"></script>
         <!--<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>-->
-        
+
         <link href="CSS/REMOTE/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <!--<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>-->
         <title>GRAPH REPORT</title>
@@ -74,7 +74,7 @@
                                 <option value="'December'" selected>December</option>
                             </select>
                             <select class="selectpicker2" id="yearList">
-                                
+
                             </select>
                             <select class="selectpicker" id="chart-type">
                                 <option selected>Area Chart</option>
@@ -150,7 +150,7 @@
                 <br/>
                 <br/>
             </div>
- 
+
             <div class="row" id="line-chart">
                 <div class="col-md-12">
                     <center>
@@ -186,12 +186,12 @@
                                         </div>
                                     </td>
                                     <td style="width: 70px">
-                                        <div class="excel-btn-div" onclick="downloadCSV({ filename: 'stock-data.csv' });">
+                                        <div class="excel-btn-div" onclick="downloadCSV({filename: 'stock-data.csv'});">
                                             <img class="excel-btn" src="IMG/exel.png" alt=""/>
                                         </div>
                                     </td>
-                                     <td style="width: 70px">
-                                        <div class="excel-btn-div">
+                                    <td style="width: 70px">
+                                        <div class="excel-btn-div" onclick="printData()">
                                             <img class="excel-btn" src="IMG/exel_1.png" alt=""/>
                                         </div>
                                     </td>
