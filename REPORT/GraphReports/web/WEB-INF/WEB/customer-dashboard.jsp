@@ -186,7 +186,7 @@
                                 <tr>
                                     <th>INVOICE NO</th>
                                     <th>DATE</th>
-                                    <th>TYPE NAME</th>
+                                    <th>ITEM NAME</th>
                                     <th>QTY</th>
                                     <th>SELLING PRICE</th>
                                 </tr>
