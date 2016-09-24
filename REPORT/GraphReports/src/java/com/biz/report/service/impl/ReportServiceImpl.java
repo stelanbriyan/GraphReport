@@ -18,7 +18,9 @@ import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.service.ReportService;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -250,7 +252,9 @@ public class ReportServiceImpl implements ReportService {
         itemDTO.setDate(obAr[1].toString().substring(0, 10));
         itemDTO.setItemName(obAr[2].toString());
         itemDTO.setQty(obAr[3].toString());
-        itemDTO.setSellingPrice(obAr[4].toString());
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(2);
+        itemDTO.setSellingPrice(numberFormat.format(Double.parseDouble(obAr[4].toString())));
         return itemDTO;
     }
 

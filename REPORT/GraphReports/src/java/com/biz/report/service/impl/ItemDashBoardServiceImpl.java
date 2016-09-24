@@ -18,6 +18,7 @@ import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import com.biz.report.dto.SalesDTO;
 import com.biz.report.service.ItemDashBoardService;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
@@ -203,7 +204,9 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         salesDTO.setTxtDate(ob[1].toString().substring(0, 10));
         salesDTO.setTypeName(ob[2].toString());
         salesDTO.setQty(ob[3].toString());
-        salesDTO.setSellingPrice(ob[4].toString());
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(2);
+        salesDTO.setSellingPrice(numberFormat.format(Double.parseDouble(ob[4].toString())));
         return salesDTO;
     }
 
