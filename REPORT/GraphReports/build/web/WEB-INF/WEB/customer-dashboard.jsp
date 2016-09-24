@@ -169,7 +169,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="excel-btn-div">
+                                    <div class="excel-btn-div" onclick="downloadCSV({ filename: 'stock-data.csv' });">
                                         <img class="excel-btn" src="IMG/exel.png" alt=""/>
                                     </div>
                                 </td>
