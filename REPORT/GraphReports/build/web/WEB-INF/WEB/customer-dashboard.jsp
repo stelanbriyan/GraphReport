@@ -175,7 +175,7 @@
                                 </td>
                                 <td style="width: 70px">
                                     <div class="excel-btn-div">
-                                        <img class="excel-btn" src="IMG/exel_1.png" alt=""/>
+                                        <img class="excel-btn" onclick="printData()" src="IMG/exel_1.png" alt=""/>
                                     </div>
                                 </td>
                             </tr>

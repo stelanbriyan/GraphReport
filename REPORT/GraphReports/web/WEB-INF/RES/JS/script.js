@@ -478,14 +478,14 @@ function printData()
     mywindow.document.write('<html><head><title>Category Report - Print</title>');
 //    mywindow.document.write('<link rel="stylesheet" href="WEB-INF/RES/CSS/bootstrap.min.css" type="text/css" />');
     mywindow.document.write('</head><body>');
-    mywindow.document.write('<table border="1" width="100%"><thead><tr><th style="padding-right:6px;">INVOICE NO</th><th style="padding-right:6px;">DATE</th><th style="padding-right:6px;">ITEM NAME</th><th style="padding-right:6px;">QTY</th><th style="padding-right:6px;">SELLING PRICE</th></tr></thead><tbody>');
+    mywindow.document.write('<table border="1" style="border-collapse: collapse;" width="100%"><thead><tr><th style="padding:7px;">INVOICE NO</th><th style="padding:7px;">DATE</th><th style="padding:7px;">ITEM NAME</th><th style="padding:7px;">QTY</th><th style="padding:7px;">SELLING PRICE</th></tr></thead><tbody>');
     for (var i = 0; i < tableData.length; i++) {
         mywindow.document.write('<tr>');
-        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].invoice_no + '</td>');
-        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].date + '</td>');
-        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].item_name + '</td>');
-        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].qty + '</td>');
-        mywindow.document.write('<td style="padding-right:6px;">' + tableData[i].selling_price + '</td>');
+        mywindow.document.write('<td style="padding:7px;">' + tableData[i].invoice_no + '</td>');
+        mywindow.document.write('<td style="padding:7px;">' + tableData[i].date + '</td>');
+        mywindow.document.write('<td style="padding:7px;">' + tableData[i].item_name + '</td>');
+        mywindow.document.write('<td style="padding:7px;">' + tableData[i].qty + '</td>');
+        mywindow.document.write('<td style="padding:7px;text-align:right">' + tableData[i].selling_price + '</td>');
         mywindow.document.write('</tr>');
     }
     mywindow.document.write('</tbody>');
