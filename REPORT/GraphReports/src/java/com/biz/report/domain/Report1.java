@@ -16,6 +16,8 @@ public class Report1 {
     private String monthName;
     
     private double sellingPrice;
+    
+    private String itemCode;
 
     public Report1() {
     }
@@ -65,6 +67,20 @@ public class Report1 {
     @Override
     public String toString() {
         return typeName + " " + monthName + " " + sellingPrice;
+    }
+
+    /**
+     * @return the itemCode
+     */
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    /**
+     * @param itemCode the itemCode to set
+     */
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
     
     

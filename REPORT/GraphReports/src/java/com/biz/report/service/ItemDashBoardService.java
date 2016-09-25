@@ -12,6 +12,7 @@ import com.biz.report.dto.Report4DataSet;
 import com.biz.report.dto.Report5DataSet;
 import com.biz.report.dto.ReportDataSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public interface ItemDashBoardService {
     
-    List<String> readItems();
+    Map<String, String> readItems();
     
     List<Report1DataSet> readDataForAreaChart(String items, String months, String year);
     

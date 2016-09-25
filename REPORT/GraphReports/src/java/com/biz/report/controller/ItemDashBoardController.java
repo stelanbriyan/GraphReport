@@ -54,12 +54,12 @@ public class ItemDashBoardController {
     }
     
     @RequestMapping(value = "/items")
-    private ResponseEntity<List<String>> selectTag() {
-        List<String> list = itemDashBoardService.readItems();
+    private ResponseEntity<Map<String, String>> selectTag() {
+        Map<String, String> list = itemDashBoardService.readItems();
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("success", "Success");
-        return new ResponseEntity<List<String>>(list, headers, HttpStatus.OK);
+        return new ResponseEntity<Map<String, String>>(list, headers, HttpStatus.OK);
     }
     
     @ResponseBody

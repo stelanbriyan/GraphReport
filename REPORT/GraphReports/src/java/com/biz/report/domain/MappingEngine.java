@@ -39,8 +39,11 @@ public class MappingEngine {
                 if (obj[2] != null) {
                     r.setSellingPrice(Double.parseDouble(obj[2].toString().trim()));
                 }
-                logger.info(o);
-                logger.info(r);
+                if (obj[3] != null) {
+                    r.setItemCode(obj[3].toString().trim());
+                }
+                logger.info(obj[1]);
+                logger.info(obj[3]);
                 report.add(r);
             }
         }

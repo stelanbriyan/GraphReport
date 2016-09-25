@@ -33,21 +33,21 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
     public List readItems() {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT a.ItemName FROM CASSIMS.dbo.fitems a "
-                + "GROUP BY a.ItemName");
+        Query sQLQuery = session.createSQLQuery("SELECT a.ItemCode, a.ItemName FROM CASSIMS.dbo.fitems a "
+                + "GROUP BY a.ItemName, a.ItemCode");
 
         return sQLQuery.list();
     }
 
     public List read(String items, String months, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT MONTH(b.TxnDate) AS A  , a.ItemName , sum(b.SellPrice) "
+        Query sQLQuery = session.createSQLQuery("SELECT MONTH(b.TxnDate) AS A  , a.ItemName , sum(b.SellPrice), a.ItemCode "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
-                + "AND a.ItemName IN (" + items + ") "
+                + "AND a.ItemCode IN (" + items + ") "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
-                + "GROUP BY a.ItemName , MONTH(b.TxnDate) ");
+                + "GROUP BY a.ItemName , MONTH(b.TxnDate), a.ItemCode ");
         return sQLQuery.list();
     }
 
@@ -57,7 +57,7 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
-                + "AND a.ItemName IN (" + items + ") "
+                + "AND a.ItemCode IN (" + items + ") "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.ItemName ");
         return sQLQuery.list();

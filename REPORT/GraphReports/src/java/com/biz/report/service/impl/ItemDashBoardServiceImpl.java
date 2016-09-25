@@ -20,7 +20,9 @@ import com.biz.report.dto.SalesDTO;
 import com.biz.report.service.ItemDashBoardService;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,26 +40,26 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     @Autowired
     private ItemDashBoardDao itemDashBoardDao;
 
-    private Log logger = LogFactory.getLog(ItemDashBoardServiceImpl.class);
+    private final Log logger = LogFactory.getLog(ItemDashBoardServiceImpl.class);
 
-    public List<String> readItems() {
+    public Map<String, String> readItems() {
         List<String> readItems = itemDashBoardDao.readItems();
-        List<String> newItemsList = new ArrayList<String>();
-        for (String s : readItems) {
-            if (s != null) {
-                if (s.length() > 50) {
-                    s = s.substring(0, 50);
+        Map<String, String> newItemsList = new HashMap<String, String>();
+        for (Object ob : readItems) {
+            Object[] obAr = (Object[]) ob;
+            if (obAr[0] != null && !obAr[0].equals("") && obAr[1] != null && !obAr[1].equals("")) {
+                String itemCode = obAr[0].toString();
+                String itemName = obAr[1].toString();
+                if (itemName.length() > 50) {
+                    itemName = itemName.substring(0, 50);
                 }
-                newItemsList.add(s.trim());
+                newItemsList.put(itemCode, itemName);
             }
         }
         return newItemsList;
     }
 
     public List<Report1DataSet> readDataForAreaChart(String items, String months, String year) {
-        if (!StringUtils.isEmpty(items) && items.contains("[")) {
-            items = items.substring(1, items.length() - 1);
-        }
         String[] typeAr;
         if (!StringUtils.isEmpty(items) && items.contains(",")) {
             typeAr = items.split("[,]");
@@ -80,16 +82,13 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report1DataSet> dataSets = new ArrayList<Report1DataSet>();
         for (int i = 0; i < typeCount; i++) {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+            dataSets.add(new Report1DataSet("stackedArea", dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
         }
         return dataSets;
     }
 
     @Override
     public List<Report2DataSet> readDataForPieChart(String items, String year, String months) {
-        if (!StringUtils.isEmpty(items) && items.contains("[")) {
-            items = items.substring(1, items.length() - 1);
-        }
         if (!StringUtils.isEmpty(months) && months.contains("[")) {
             months = months.substring(1, months.length() - 1);
         }
@@ -103,9 +102,6 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     }
 
     public List<Report3DataSet> readDataForBarChart(String items, String year, String months) {
-        if (!StringUtils.isEmpty(items) && items.contains("[")) {
-            items = items.substring(1, items.length() - 1);
-        }
         if (!StringUtils.isEmpty(months) && months.contains("[")) {
             months = months.substring(1, months.length() - 1);
         }
@@ -119,9 +115,6 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
     }
 
     public List<Report4DataSet> readDataForColumnChart(String items, String months, String year) {
-        if (!StringUtils.isEmpty(items) && items.contains("[")) {
-            items = items.substring(1, items.length() - 1);
-        }
         String[] typeAr;
         if (!StringUtils.isEmpty(items) && items.contains(",")) {
             typeAr = items.split("[,]");
@@ -144,15 +137,12 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report4DataSet> dataSets = new ArrayList<Report4DataSet>();
         for (int i = 0; i < typeCount; i++) {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report4DataSet("column", dataPoints, typeAr[i]));
+            dataSets.add(new Report4DataSet("column", dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
         }
         return dataSets;
     }
 
     public List<Report5DataSet> readDataForLineChart(String items, String months, String year) {
-        if (!StringUtils.isEmpty(items) && items.contains("[")) {
-            items = items.substring(1, items.length() - 1);
-        }
         String[] typeAr;
         if (!StringUtils.isEmpty(items) && items.contains(",")) {
             typeAr = items.split("[,]");
@@ -175,7 +165,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report5DataSet> dataSets = new ArrayList<Report5DataSet>();
         for (int i = 0; i < typeCount; i++) {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report5DataSet(dataPoints, typeAr[i]));
+            dataSets.add(new Report5DataSet(dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
         }
         return dataSets;
     }
@@ -239,8 +229,8 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report1> list = new ArrayList<Report1>();
 
         for (Report1 report1 : reportList) {
-            String typeName = "'" + report1.getTypeName().trim() + "'";
-            if (item.equalsIgnoreCase(typeName)) {
+            String itemCode = "'" + report1.getItemCode().trim() + "'";
+            if (item.equalsIgnoreCase(itemCode)) {
                 list.add(report1);
             }
         }
@@ -250,6 +240,9 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
 
     @Override
     public ReportDataSet getReports(String items, String months, String year) {
+        if (!StringUtils.isEmpty(items) && items.contains("[")) {
+            items = items.substring(1, items.length() - 1);
+        }
         List<Report1DataSet> report1 = readDataForAreaChart(items, months, year);
         List<Report2DataSet> report2 = readDataForPieChart(items, year, months);
         List<Report3DataSet> report3 = readDataForBarChart(items, year, months);
