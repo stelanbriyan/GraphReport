@@ -39,7 +39,27 @@ public class ReportDaoImpl implements ReportDao {
                 + "FROM FItems a , FType b , FInvdet c "
                 + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
                 + "AND YEAR(c.txnDate) = " + year
-                + " AND b.TypeName IN (" + types + ") "
+                + " AND b.TypeName IN (            ( "
+                + "					SELECT TOP 10 "
+                + "						b.typeName "
+                + "					FROM "
+                + "						CASSIMS.dbo.FItems a , "
+                + "						CASSIMS.dbo.FType b , "
+                + "						CASSIMS.dbo.FInvdet c  "
+                + "					WHERE "
+                + "						a.typeCode = b.typeCode  "
+                + "						AND c.itemCode = a.itemCode  "
+                + "						AND YEAR(c.txnDate) =  " + year
+                + "						AND b.TypeName IN ( "
+                + types
+                + "						) "
+                + "						AND DATENAME(MONTH, c.txnDate) IN ( "
+                + months
+                + "						) "
+                + "					GROUP BY "
+                + "						b.typeName "
+                + "					ORDER BY sum(c.sellPrice) DESC "
+                + "			)) "
                 + "AND DATENAME(MONTH, c.txnDate) IN (" + months + ") "
                 + "GROUP BY b.typeName  ,  MONTH(c.TxnDate) "
         );
@@ -79,21 +99,21 @@ public class ReportDaoImpl implements ReportDao {
 //                    + "AND b.TypeName = " + type);
 //            return query.list();
 //        }
-            Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
-                    + "FROM fitems a , FType b , FInvdet c  "
-                    + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
-                    + "AND YEAR(c.txnDate) =  " + year + " "
-                    + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
-                    + "AND b.TypeName = " + type);
-            return query.list();
+        Query query = session.createSQLQuery("SELECT c.RefNo, c.txnDate , a.ItemName , c.Qty , c.sellPrice "
+                + "FROM fitems a , FType b , FInvdet c  "
+                + "WHERE a.typeCode = b.typeCode AND c.itemCode = a.itemCode "
+                + "AND YEAR(c.txnDate) =  " + year + " "
+                + "AND DATENAME(MONTH, c.txnDate) IN (" + month + ") "
+                + "AND b.TypeName = " + type);
+        return query.list();
     }
- 
+
     public List readType() {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.typeName FROM FType a GROUP BY  a.typeName");
         return sQLQuery.list();
     }
-    
+
     public List readYears() {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT YEAR(c.txnDate) "

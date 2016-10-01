@@ -45,7 +45,25 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
-                + "AND a.ItemCode IN (" + items + ") "
+                + "AND a.ItemCode IN (			( "
+                + "			   SELECT TOP 10 "
+                + "					a.ItemCode  "
+                + "				FROM "
+                + "					CASSIMS.dbo.fItems a , "
+                + "					CASSIMS.dbo.fInvdet b  "
+                + "				WHERE "
+                + "					a.ItemCode = b.Itemcode  "
+                + "					AND YEAR(b.TxnDate) = " + year + " "
+                + "					AND a.ItemCode IN ( "
+                + items
+                + "					) "
+                + "					AND DATENAME(MONTH, b.TxnDate) IN ( "
+                + months
+                + "					) "
+                + "				GROUP BY\n"
+                + "					a.ItemName , "
+                + "					a.ItemCode ORDER BY sum(b.SellPrice) DESC "
+                + "			)) "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY a.ItemName , MONTH(b.TxnDate), a.ItemCode ");
         return sQLQuery.list();
