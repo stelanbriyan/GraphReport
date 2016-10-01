@@ -37,9 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerReportDao customerReportDao;
-    
+
     private final Log logger = LogFactory.getLog(CustomerServiceImpl.class);
-    
+
     public List<String> readCustomers() {
         return customerReportDao.readCustomers();
     }
@@ -68,9 +68,14 @@ public class CustomerServiceImpl implements CustomerService {
         List<Report1> reportList = new MappingEngine().getList(list);
         logger.info(reportList.size());
         List<Report1DataSet> dataSets = new ArrayList<Report1DataSet>();
-        for (int i = 0; i < typeCount; i++) {
-            List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+        for (int i = 0; i < reportList.size(); i++) {
+            for (Report1DataSet dataSet : dataSets) {
+                if (!dataSet.getName().equals(reportList.get(i).getTypeName())) {
+                    List<DataPoint> dataPoints = 
+                            constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                    dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+                }
+            }
         }
         return dataSets;
     }
@@ -168,7 +173,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return dataSets;
     }
-    
+
     @Override
     public List<ItemDTO> readByCustomerName(String customers, String year, String month) {
         if (!StringUtils.isEmpty(month) && month.contains("[")) {
@@ -207,7 +212,7 @@ public class CustomerServiceImpl implements CustomerService {
         List<Report5DataSet> report5 = readDataForLineChart(customers, months, year);
         return new ReportDataSet(report1, report2, report3, report4, report5);
     }
-    
+
     @ResponseBody
     private List<DataPoint> constructDataPoints(List<Report1> reportList, String customer, String[] monthAr, int i) {
         List<DataPoint> dataPoints = new ArrayList<DataPoint>();
@@ -232,7 +237,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return dataPoints;
     }
-    
+
     public List<Report1> getReportList(String customer, List<Report1> reportList) {
         List<Report1> list = new ArrayList<Report1>();
 
@@ -245,5 +250,5 @@ public class CustomerServiceImpl implements CustomerService {
 
         return list;
     }
-    
+
 }
