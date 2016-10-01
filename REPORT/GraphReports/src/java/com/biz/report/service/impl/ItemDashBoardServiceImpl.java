@@ -27,6 +27,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -75,14 +76,22 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         } else {
             monthAr = new String[]{months};
         }
-        int typeCount = typeAr.length;
         List list = itemDashBoardDao.read(items, months, year);
         List<Report1> reportList = new MappingEngine().getList(list);
-        logger.info(reportList.size());
         List<Report1DataSet> dataSets = new ArrayList<Report1DataSet>();
-        for (int i = 0; i < typeCount; i++) {
-            List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report1DataSet("stackedArea", dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
+        List<String> customerList = new ArrayList<String>();
+        for (int i = 0; i < reportList.size(); i++) {
+            if (CollectionUtils.isEmpty(dataSets)) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report1DataSet("stackedArea", dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            } else if (!customerList.contains(reportList.get(i).getTypeName())) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report1DataSet("stackedArea", dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            }
         }
         return dataSets;
     }
@@ -135,9 +144,19 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report1> reportList = new MappingEngine().getList(list);
         logger.info(reportList.size());
         List<Report4DataSet> dataSets = new ArrayList<Report4DataSet>();
-        for (int i = 0; i < typeCount; i++) {
-            List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report4DataSet("column", dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
+        List<String> customerList = new ArrayList<String>();
+        for (int i = 0; i < reportList.size(); i++) {
+            if (CollectionUtils.isEmpty(dataSets)) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report4DataSet("column", dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            } else if (!customerList.contains(reportList.get(i).getTypeName())) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report4DataSet("column", dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            }
         }
         return dataSets;
     }
@@ -163,9 +182,19 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report1> reportList = new MappingEngine().getList(list);
         logger.info(reportList.size());
         List<Report5DataSet> dataSets = new ArrayList<Report5DataSet>();
-        for (int i = 0; i < typeCount; i++) {
-            List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
-            dataSets.add(new Report5DataSet(dataPoints, getReportList(typeAr[i].trim(), reportList).get(0).getTypeName()));
+        List<String> customerList = new ArrayList<String>();
+        for (int i = 0; i < reportList.size(); i++) {
+            if (CollectionUtils.isEmpty(dataSets)) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report5DataSet(dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            } else if (!customerList.contains(reportList.get(i).getTypeName())) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report5DataSet(dataPoints, reportList.get(i).getTypeName().trim()));
+                customerList.add(reportList.get(i).getTypeName());
+            }
         }
         return dataSets;
     }
@@ -229,7 +258,7 @@ public class ItemDashBoardServiceImpl implements ItemDashBoardService {
         List<Report1> list = new ArrayList<Report1>();
 
         for (Report1 report1 : reportList) {
-            String itemCode = "'" + report1.getItemCode().trim() + "'";
+            String itemCode = report1.getTypeName().trim();
             if (item.equalsIgnoreCase(itemCode)) {
                 list.add(report1);
             }

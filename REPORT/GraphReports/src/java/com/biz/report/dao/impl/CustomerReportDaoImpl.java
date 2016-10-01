@@ -40,20 +40,38 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
 
     public List read(String customers, String months, String year) {
         Session session = getSession();
-        String sql = "SELECT TOP 10 MONTH(b.TxnDate) AS A, a.DebName , sum(c.SellPrice) "
+        String sql = "SELECT MONTH(b.TxnDate) AS A, a.DebName , sum(c.SellPrice) "
                 + "FROM CASSIMS.dbo.fDebtor a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
                 + "WHERE a.DebCode = b.DebCode AND b.RefNo = c.RefNo "
                 + "AND YEAR(b.TxnDate) = " + year + " "
-                + "AND a.DebName IN (" + customers + ") "
+                + "AND a.DebName IN (( "
+                + "				SELECT TOP 10 "
+                + "					a.DebName "
+                + "				FROM "
+                + "					CASSIMS.dbo.fDebtor a , "
+                + "					CASSIMS.dbo.fInvhed b , "
+                + "					CASSIMS.dbo.fInvdet c  "
+                + "				WHERE "
+                + "					a.DebCode = b.DebCode  "
+                + "					AND b.RefNo = c.RefNo  "
+                + "					AND YEAR(b.TxnDate) = 2016  "
+                + "					AND a.DebName IN ( "
+                + customers
+                + "					) "
+                + "					AND DATENAME(MONTH, b.TxnDate) IN ( "
+                + months
+                + "					) "
+                + "				GROUP BY a.DebName ORDER BY sum(c.SellPrice) DESC "
+                + ")) "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
-                + "GROUP BY MONTH(b.TxnDate), a.DebName ORDER BY sum(c.SellPrice) DESC";
+                + "GROUP BY MONTH(b.TxnDate), a.DebName";
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
 
     public List readByMonth(String customers, String months, String year) {
         Session session = getSession();
-        String sql = "SELECT  TOP 10  a.DebName , sum(c.SellPrice) "
+        String sql = "SELECT TOP 10  a.DebName , sum(c.SellPrice) "
                 + "FROM CASSIMS.dbo.fDebtor a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "
                 + "WHERE a.DebCode = b.DebCode AND b.RefNo = c.RefNo "
                 + "AND YEAR(b.TxnDate) = " + year + " "

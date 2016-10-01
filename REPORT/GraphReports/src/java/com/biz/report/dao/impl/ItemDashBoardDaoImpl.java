@@ -53,13 +53,13 @@ public class ItemDashBoardDaoImpl implements ItemDashBoardDao {
 
     public List readByMonth(String items, String months, String year) {
         Session session = getSession();
-        Query sQLQuery = session.createSQLQuery("SELECT a.ItemName , sum(b.SellPrice) "
+        Query sQLQuery = session.createSQLQuery("SELECT TOP 10  a.ItemName , sum(b.SellPrice) "
                 + "FROM CASSIMS.dbo.fItems a , CASSIMS.dbo.fInvdet b "
                 + "WHERE a.ItemCode = b.Itemcode "
                 + "AND YEAR(b.TxnDate) = " + year + " "
                 + "AND a.ItemCode IN (" + items + ") "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
-                + "GROUP BY a.ItemName ");
+                + "GROUP BY a.ItemName  ORDER BY sum(b.SellPrice) DESC");
         return sQLQuery.list();
     }
 
