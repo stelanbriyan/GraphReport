@@ -44,13 +44,32 @@ public class RepReportDaoImpl implements RepReportDao {
                 + "FROM fSalRep a , fInvhed b , fInvdet c "
                 + "WHERE a.RepCode = b.RepCode AND b.RefNo = c.RefNo "
                 + "AND YEAR(b.TxnDate) = " + year + " "
-                + "AND a.RepName IN (" + reps + ") "
+                + "AND a.RepName IN (( "
+                + "				SELECT TOP 10 "
+                + "					a.RepName "
+                + "				FROM "
+                + "					CASSIMS.dbo.fSalRep a , "
+                + "					CASSIMS.dbo.fInvhed b , "
+                + "					CASSIMS.dbo.fInvdet c  "
+                + "				WHERE\n"
+                + "					a.RepCode = b.RepCode  "
+                + "					AND b.RefNo = c.RefNo  "
+                + "					AND YEAR(b.TxnDate) = " + year + " "
+                + "					AND a.RepName IN ( "
+                + reps
+                + "					) "
+                + "					AND DATENAME(MONTH, c.TxnDate) IN ( "
+                + months
+                + "					) "
+                + "				GROUP BY "
+                + "					a.RepName ORDER BY sum(c.SellPrice) DESC "
+                + "				)) "
                 + "AND DATENAME(MONTH, c.TxnDate) IN (" + months + ") "
                 + "GROUP BY MONTH(c.TxnDate)  , a.RepName");
         return sQLQuery.list();
     }
 
-    public List readByMonth(String reps, String months, String year ) {
+    public List readByMonth(String reps, String months, String year) {
         Session session = getSession();
         Query sQLQuery = session.createSQLQuery("SELECT a.RepName , sum(c.SellPrice) "
                 + "FROM CASSIMS.dbo.fSalRep a , CASSIMS.dbo.fInvhed b , CASSIMS.dbo.fInvdet c "

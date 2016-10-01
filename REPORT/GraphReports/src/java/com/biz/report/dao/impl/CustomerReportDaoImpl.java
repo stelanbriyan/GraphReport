@@ -54,7 +54,7 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
                 + "				WHERE "
                 + "					a.DebCode = b.DebCode  "
                 + "					AND b.RefNo = c.RefNo  "
-                + "					AND YEAR(b.TxnDate) = 2016  "
+                + "					AND YEAR(b.TxnDate) = " + year + " "
                 + "					AND a.DebName IN ( "
                 + customers
                 + "					) "
@@ -65,6 +65,7 @@ public class CustomerReportDaoImpl implements CustomerReportDao {
                 + ")) "
                 + "AND DATENAME(MONTH, b.TxnDate) IN (" + months + ") "
                 + "GROUP BY MONTH(b.TxnDate), a.DebName";
+
         Query sQLQuery = session.createSQLQuery(sql);
         return sQLQuery.list();
     }
