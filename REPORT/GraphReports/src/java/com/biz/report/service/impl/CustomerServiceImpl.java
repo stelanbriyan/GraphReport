@@ -25,6 +25,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -69,11 +70,17 @@ public class CustomerServiceImpl implements CustomerService {
         logger.info(reportList.size());
         List<Report1DataSet> dataSets = new ArrayList<Report1DataSet>();
         for (int i = 0; i < reportList.size(); i++) {
-            for (Report1DataSet dataSet : dataSets) {
-                if (!dataSet.getName().equals(reportList.get(i).getTypeName())) {
-                    List<DataPoint> dataPoints = 
-                            constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
-                    dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+            if (!CollectionUtils.isEmpty(dataSets)) {
+                List<DataPoint> dataPoints
+                        = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+            } else {
+                for (Report1DataSet dataSet : dataSets) {
+                    if (!dataSet.getName().equals(reportList.get(i).getTypeName())) {
+                        List<DataPoint> dataPoints
+                                = constructDataPoints(reportList, reportList.get(i).getTypeName().trim(), monthAr, i);
+                        dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
+                    }
                 }
             }
         }
