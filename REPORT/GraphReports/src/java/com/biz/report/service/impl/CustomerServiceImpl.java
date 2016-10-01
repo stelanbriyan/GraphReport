@@ -72,6 +72,9 @@ public class CustomerServiceImpl implements CustomerService {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
             dataSets.add(new Report1DataSet("stackedArea", dataPoints, typeAr[i]));
         }
+        if (dataSets.size() >= 10) {
+            dataSets = dataSets.subList(0, 9);
+        }
         return dataSets;
     }
 
@@ -88,6 +91,9 @@ public class CustomerServiceImpl implements CustomerService {
         for (Report2 r : reportList) {
             dataSets.add(new Report2DataSet(r.getTypeName(), r.getAmount()));
         }
+        if (dataSets.size() >= 10) {
+            dataSets = dataSets.subList(0, 9);
+        }
         return dataSets;
     }
 
@@ -103,6 +109,9 @@ public class CustomerServiceImpl implements CustomerService {
         List<Report3DataSet> dataSets = new ArrayList<Report3DataSet>();
         for (Report2 r : reportList) {
             dataSets.add(new Report3DataSet(r.getTypeName(), r.getAmount()));
+        }
+        if (dataSets.size() >= 10) {
+            dataSets = dataSets.subList(0, 9);
         }
         return dataSets;
     }
@@ -135,6 +144,9 @@ public class CustomerServiceImpl implements CustomerService {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
             dataSets.add(new Report4DataSet("column", dataPoints, typeAr[i]));
         }
+        if (dataSets.size() >= 10) {
+            dataSets = dataSets.subList(0, 9);
+        }
         return dataSets;
     }
 
@@ -165,6 +177,9 @@ public class CustomerServiceImpl implements CustomerService {
         for (int i = 0; i < typeCount; i++) {
             List<DataPoint> dataPoints = constructDataPoints(reportList, typeAr[i].trim(), monthAr, i);
             dataSets.add(new Report5DataSet(dataPoints, typeAr[i]));
+        }
+        if (dataSets.size() >= 10) {
+            dataSets = dataSets.subList(0, 9);
         }
         return dataSets;
     }
