@@ -13,6 +13,7 @@ $(function () {
         type: "GET",
         url: "v1/web/items",
         success: function (data, textStatus, jqXHR) {
+            $('#list').append('<option value="ALL">ALL</option>');
             $.map(data, function (val, i) {
                 $('#list').append('<option value="' + "'" + i.trim() + "'" + '">' + val.trim() + "</option>");
             });
