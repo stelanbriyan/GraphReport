@@ -52,10 +52,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!--TYPE :-->
-                            <select class="selectpicker1" id="typelist" multiple multiple data-live-search="true">
-                                <!--                                <option value="'Residential'">Residential</option>
-                                                                <option value="'X-RITE'">X-RITE</option>
-                                                                <option value="'ATLAS'">ATLAS</option>-->
+                            <select class="selectpicker1" id="typelist" 
+                                    multiple data-live-search="true"
+                                    multiple data-actions-box="true"
+                                    multiple data-selected-text-format="count">
                             </select>
                             <!--&nbsp;&nbsp;&nbsp;-->
                             <!--MONTHS :-->

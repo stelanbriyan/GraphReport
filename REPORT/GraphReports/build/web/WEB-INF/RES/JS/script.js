@@ -12,7 +12,6 @@ $(function () {
         type: "POST",
         url: "v1/web/type-name",
         success: function (data, textStatus, jqXHR) {
-            $('#typelist').append('<option value="ALL">ALL</option>');
             for (var property in data) {
                 $('#typelist').append('<option id="op" value="' + "'" + data[property].trim() + "'" + '">' + data[property].trim() + "</option>");
             }
@@ -25,14 +24,6 @@ $(function () {
             console.log(errorThrown);
         }
     });
-//    $('#typelist').change(function () {
-////        var typeList = $('#typelist').val();
-////        if (typeList.includes("ALL")) {
-//            $("#typelist option").not(':first-child').each(function (index) {
-//                $(this).prop('disabled', true);
-//            });
-////        }
-//    });
     $.ajax({
         type: "POST",
         url: "v1/web/years",
